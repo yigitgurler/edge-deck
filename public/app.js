@@ -73,6 +73,7 @@ function merge(base, over) {
 }
 let saveTimer;
 function save() {
+  if (DEMO) return;
   try { localStorage.setItem('edgeDeck', JSON.stringify(S)); } catch {}
   clearTimeout(saveTimer);
   saveTimer = setTimeout(() => {
@@ -80,13 +81,58 @@ function save() {
   }, 600);
 }
 async function loadSettings() {
-  let local = null;
-  try { local = JSON.parse(localStorage.getItem('edgeDeck')); } catch {}
-  let remote = null;
-  try { remote = await (await fetch(API + '/api/settings', { cache: 'no-store' })).json(); } catch {}
+  let local = null, remote = null;
+  if (!DEMO) {
+    try { local = JSON.parse(localStorage.getItem('edgeDeck')); } catch {}
+    try { remote = await (await fetch(API + '/api/settings', { cache: 'no-store' })).json(); } catch {}
+  }
   S = merge(structuredClone(DEFAULTS), remote || local || {});
   // keep any widget ids added in newer versions
   for (const w of DEFAULTS.home) if (!S.home.find(h => h.id === w.id)) S.home.push({ ...w });
+  // URL overrides (not saved): ?theme=aurora&lang=tr&accent=%233ee0c5&widgets=clock,weather,calendar
+  if (params.get('theme')) S.theme = params.get('theme');
+  if (params.get('lang')) S.lang = params.get('lang');
+  if (params.get('accent')) S.accent = params.get('accent');
+  if (params.get('widgets')) {
+    const ids = params.get('widgets').split(',');
+    S.home = [...ids.map(id => ({ id, on: true })), ...S.home.filter(h => !ids.includes(h.id)).map(h => ({ ...h, on: false }))];
+  }
+  if (DEMO) {
+    S.dim.on = false;
+    S.todos = [
+      { t: 'Finish the build log', d: true }, { t: 'Order more thermal paste', d: false },
+      { t: 'Call mom — Sunday', d: false }, { t: 'Update GPU drivers', d: true }, { t: 'Gym 6 PM', d: false },
+    ];
+    S.notes = 'Fan curve: 40% idle, 70% @ 75°C\nSteam sale ends Thursday\nNew desk mat — 900×400';
+  }
+}
+
+// ---------------------------------------------------------------- demo data (?demo) for screenshots
+const DEMO = params.has('demo');
+let demoT = 0;
+const walk = {};
+function demoStats() {
+  demoT++;
+  // smooth random walk per key, so graphs look like real load
+  const w = (a, f, o = 0) => {
+    const k = `${a}|${f}|${o}`;
+    walk[k] = clamp((walk[k] ?? 0) * .85 + (Math.random() - .5) * .9 + .12 * Math.sin(demoT / (f * 3) + o), -1, 1);
+    return a * walk[k];
+  };
+  const cpu = 34 + w(12, 3) + w(6, 1.3, 1);
+  return {
+    online: true, host: 'GAMING-PC',
+    cpu: { load: cpu, cores: Array.from({ length: 16 }, (_, i) => Math.max(4, Math.round(cpu + w(22, 2 + i % 5, i)))), model: 'AMD Ryzen 7 7800X3D 8-Core Processor', temp: 61 + w(4, 4) },
+    ram: { used: 19.4 * 2 ** 30 + w(2 ** 29, 6), total: 32 * 2 ** 30 },
+    uptime: 3 * 86400 + 5 * 3600 + 42 * 60,
+    gpu: { name: 'NVIDIA GeForce RTX 4080 SUPER', load: 58 + w(18, 2.5) + w(8, 0.9, 2), temp: 64 + w(3, 5), vramUsed: 9.6 * 2 ** 30, vramTotal: 16 * 2 ** 30, power: 238 + w(30, 2) },
+    net: { down: 4.2e6 + w(2.6e6, 2.2) + w(1e6, 0.7, 1), up: 6.5e5 + w(3e5, 1.8, 2) },
+    disks: [
+      { name: 'C:', label: 'System', size: 2e12, free: 0.74e12 }, { name: 'D:', label: 'Games', size: 4e12, free: 1.1e12 },
+      { name: 'E:', label: 'Media', size: 2e12, free: 1.42e12 },
+    ],
+    media: { title: 'Midnight Drive', artist: 'Neon Avenue', album: 'City Lights', app: 'Spotify.exe', status: 'Playing', position: 94, duration: 213, updated: Date.now() },
+  };
 }
 
 // ---------------------------------------------------------------- scaling
@@ -191,8 +237,10 @@ const HIST_N = 150;
 function push(k, v) { hist[k].push(v); if (hist[k].length > HIST_N) hist[k].shift(); }
 async function pollStats() {
   try {
-    const r = await fetch(API + '/api/stats', { cache: 'no-store' });
-    stats = await r.json();
+    if (DEMO) {
+      if (!hist.cpu.length) for (let i = 0; i < HIST_N - 1; i++) { const d = demoStats(); push('cpu', d.cpu.load); push('ram', 60); push('gpu', d.gpu.load); push('down', d.net.down); push('up', d.net.up); }
+      stats = demoStats();
+    } else stats = await (await fetch(API + '/api/stats', { cache: 'no-store' })).json();
     push('cpu', stats.cpu.load);
     push('ram', stats.ram.used / stats.ram.total * 100);
     push('gpu', stats.gpu?.load ?? 0);
@@ -257,6 +305,11 @@ document.addEventListener('click', (e) => {
 // ---------------------------------------------------------------- launcher
 let launchers = [];
 async function loadLaunchers() {
+  if (DEMO) {
+    launchers = [['steam', 'Steam', '#66c0f4'], ['discord', 'Discord', '#5865f2'], ['spotify', 'Spotify', '#1ed760'], ['globe', 'Browser', '#f5a524'], ['play', 'YouTube', '#ff3b3b'], ['folder', 'Files', '#ffd166']]
+      .map(([icon, name, color]) => ({ id: icon, icon, name, color }));
+    return;
+  }
   try { launchers = (await (await fetch(API + '/api/config')).json()).launchers; } catch { launchers = []; }
 }
 document.addEventListener('click', async (e) => {
@@ -556,7 +609,7 @@ function renderSystemPage(full = true) {
   $('[data-ramb]', pg).style.width = rp + '%';
   $('[data-disks]', pg).innerHTML = (stats.disks || []).slice(0, 4).map(d => {
     const used = d.size - d.free;
-    return `<div class="disk"><div class="row"><span>${esc(d.name)} ${esc(d.label || '')}</span><span class="muted">${fmtBytes(d.free, 0)} ${T('free')}</span></div>
+    return `<div class="disk"><div class="row"><span>${esc(d.name)} ${esc(d.label || '')}</span><span class="muted">${fmtBytes(d.free, d.free >= 2 ** 40 ? 1 : 0)} ${T('free')}</span></div>
       <div class="bar"><i style="width:${used / d.size * 100}%"></i></div></div>`;
   }).join('');
   $('[data-upt]', pg).textContent = fmtUptime(stats.uptime);
@@ -926,7 +979,8 @@ async function boot() {
   applyTheme();
   await loadLaunchers();
   renderHome();
-  let start = 'home'; try { start = sessionStorage.getItem('edgeDeckPage') || params.get('page') || 'home'; } catch {}
+  if (DEMO) { pomo.remaining = 17 * 60 + 42; pomo.sessions = 2; }
+  let start = params.get('page') || 'home'; try { start = params.get('page') || sessionStorage.getItem('edgeDeckPage') || 'home'; } catch {}
   go(ORDER.includes(start) ? start : 'home');
   pollStats(); setInterval(pollStats, 1500);
   loadWeather(); setInterval(loadWeather, 15 * 60e3);

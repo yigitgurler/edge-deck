@@ -5,6 +5,8 @@ Saat, hava durumu (Charlotte ve İstanbul), bilgisayarın canlı CPU / GPU / RAM
 
 ![Ana ekran](screenshots/home.png)
 
+<p align="center"><a href="#kurulum-2-dakika-teknik-bilgi-gerekmez"><b>Kurulum</b></a> · <a href="#ekran-görüntüleri"><b>Ekran görüntüleri</b></a> · <a href="#temalar"><b>Temalar</b></a> · <a href="#kullanım"><b>Kullanım</b></a></p>
+
 ---
 
 ## Kurulum (2 dakika, teknik bilgi gerekmez)
@@ -26,6 +28,43 @@ iCUE, Edge ekranını kendi widget'ları için kullanıyor olabilir. Şu iki yol
   ```
   http://localhost:5280
   ```
+
+---
+
+## Ekran görüntüleri
+
+Hepsi Edge'in gerçek çözünürlüğünde (2560×720). Görüntülerdeki veriler örnek veridir.
+
+**Türkçe arayüz:** Ayarlar'dan tek dokunuşla.
+![Türkçe ana ekran](screenshots/home-tr.png)
+
+**Sistem:** CPU çekirdekleri, ekran kartı, ağ ve disk grafikleri.
+![Sistem](screenshots/system.png)
+
+**Medya:** Spotify, YouTube ya da Windows'ta çalan her şey.
+![Medya](screenshots/media.png)
+
+**Odak:** Pomodoro sayacı, yapılacaklar ve notlar.
+![Odak](screenshots/focus.png)
+
+**Dünya saatleri:** Charlotte, İstanbul ve istediğiniz şehirler.
+![Dünya saatleri](screenshots/world.png)
+
+**Farklı ana ekran düzeni:** Bileşenler Ayarlar'dan açılıp kapatılır ve sıralanır.
+![Farklı düzen](screenshots/layout-alt.png)
+
+**Ayarlar:** Dil, tema, renk, düzen ve şehirler.
+![Ayarlar](screenshots/settings-tr.png)
+
+## Temalar
+
+6 hazır tema ve 9 vurgu rengi var.
+
+| | |
+|---|---|
+| **Aurora** ![Aurora](screenshots/theme-aurora.png) | **Synthwave** ![Synthwave](screenshots/theme-synthwave.png) |
+| **Ember** (takvim + dünya saatleri düzeniyle) ![Ember](screenshots/theme-ember.png) | **Terminal** ![Terminal](screenshots/theme-terminal.png) |
+| **Paper** (gündüz için açık tema) ![Paper](screenshots/theme-paper.png) | **Obsidian** (varsayılan) ![Obsidian](screenshots/home.png) |
 
 ---
 
