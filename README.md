@@ -24,10 +24,52 @@ Bundan sonra bilgisayar her açıldığında panel kendiliğinden başlar. Kapat
 iCUE, Edge ekranını kendi widget'ları için kullanıyor olabilir. Şu iki yoldan birini seçin:
 
 - **Yol 1 (önerilen):** iCUE'yu açın, **XENEON EDGE** cihazına girin ve ekranın iCUE tarafından kontrol edilmesini kapatın. Sonra masaüstündeki **Edge Deck** simgesine çift tıklayın.
-- **Yol 2 (iCUE içinde):** iCUE'da Edge'e bir **Web URL** widget'ı ekleyin, tam genişliğe getirin ve adres olarak şunu yazın:
+- **Yol 2 (iCUE içinde):** iCUE'da Edge'e bir **Web URL** widget'ı ekleyin, boyutunu **XL** yapın ve adres olarak şunu yazın:
   ```
-  http://localhost:5280
+  https://localhost:5281
   ```
+  iCUE sadece `https` adresleri açıyor. Bu yüzden kurulum sırasında Windows bir **güvenlik uyarısı** gösterir ("Bu sertifikayı yüklemek istiyor musunuz?"). **Evet** deyin. Bu sertifika sadece bu bilgisayarın kendi adresi (`localhost`) için geçerlidir; başka hiçbir site için kullanılamaz. Program kaldırılınca sertifika da kaldırılır.
+
+---
+
+## Ekranı kendiniz düzenleyin
+
+Hiçbir dosyaya dokunmadan, doğrudan Edge'in üzerinden:
+
+1. Soldaki **kalem** simgesine dokunun (ya da ana ekranda boş bir yere basılı tutun).
+2. Her bileşenin altında bir düzenleme çubuğu çıkar:
+   - **‹ ›** ile sola veya sağa taşıyın.
+   - **S / M / L** ile boyutunu değiştirin.
+   - **⚙** ile ayarlarını açın.
+   - **çöp kutusu** ile kaldırın.
+3. En sağdaki **+ Bileşen ekle** kutusundan yenisini ekleyin.
+4. Bitince üstteki **Bitti** düğmesine dokunun.
+
+![Düzenleme modu](screenshots/edit-mode.png)
+![Bileşen ekle](screenshots/add-widget.png)
+
+**Eklenebilecek bileşenler:** Saat, hava durumu, sistem, müzik, takvim, dünya saatleri, odak sayacı ve yeni gelenler:
+
+| Bileşen | Ne yapar |
+|---|---|
+| **Uygulama başlatıcı** | ⚙ ile açılan listeden **bilgisayarda yüklü programları** (kendi simgeleriyle), **Steam oyunlarını** (kapak görselleriyle) ya da **web sitelerini** seçip ekleyin. Birden fazla başlatıcı kutusu kullanılabilir. |
+| **Web sitesi** | Herhangi bir site: Twitch, hava haritası, bir kontrol paneli… (Bazı siteler başka sayfaların içinde gösterilmeyi engeller.) |
+| **Fotoğraflar** | Kendi fotoğraflarınızdan slayt gösterisi. |
+| **Geri sayım** | Bir tarihe kalan gün, saat ve dakika. |
+| **Not** | Ekranda duran kısa bir yazı. Üzerine dokunup yazın. |
+
+![Yeni bileşenler](screenshots/widgets-new.png)
+
+---
+
+## Oyun modu (fare Edge'e kaymasın)
+
+Oyun oynarken fare yanlışlıkla Edge ekranına kayıp oyunun dışına tıklanmasın diye:
+
+- **Otomatik (varsayılan):** Tam ekran bir oyun açıldığında fare oyunun ekranına kilitlenir; oyundan çıkınca serbest kalır.
+- **Dokunmatik çalışmaya devam eder:** Oyun sırasında Edge'e dokunup müzik değiştirebilirsiniz. Edge Deck penceresi oyunun önüne geçip onu küçültmez.
+- **Elle açıp kapatma:** Soldaki **oyun kolu** simgesine dokunun ("A" = otomatik, "ON" = her zaman açık).
+- **Ayarlar** sayfasından tamamen kapatılabilir.
 
 ---
 
@@ -104,7 +146,7 @@ Hepsi Edge'in gerçek çözünürlüğünde (2560×720). Görüntülerdeki veril
 ## İsteğe bağlı
 
 - **CPU sıcaklığı:** Windows bunu kendiliğinden vermiyor. [LibreHardwareMonitor](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor) kurup *Options → Remote Web Server → Run* açarsanız panelde görünür. Ekran kartı sıcaklığı (NVIDIA) zaten çalışıyor.
-- **Uygulama kısayollarını değiştirmek:** `%LOCALAPPDATA%\EdgeDeck\app\config.json` dosyasını düzenleyin. Her satırda `target` olarak bir program yolu, web adresi ya da `steam://rungameid/730` gibi bir bağlantı yazılabilir. Sonra bilgisayarı yeniden başlatın.
+- **Güncelleme:** Yeni sürümün zip'ini açıp `Edge Deck Kur.bat` dosyasını tekrar çalıştırın. Ayarlarınız, kısayollarınız ve fotoğraflarınız korunur.
 
 ## Sorun giderme
 

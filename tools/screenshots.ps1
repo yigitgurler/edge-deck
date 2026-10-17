@@ -1,4 +1,4 @@
-# Renders README screenshots at the Edge's native 2560x720 using headless Microsoft Edge.
+﻿# Renders README screenshots at the Edge's native 2560x720 using headless Microsoft Edge.
 # Uses ?demo so no real PC data (host name, open tabs) ends up in the images.
 $root = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 $out = Join-Path $root 'screenshots'
@@ -21,6 +21,9 @@ $shots = [ordered]@{
   'theme-terminal'  = 'page=system&theme=terminal'
   'theme-paper'     = 'page=home&theme=paper'
   'layout-alt'      = 'page=home&widgets=clock,calendar,weather,world,media'
+  'widgets-new'     = 'page=home&widgets=clock,countdown,web,note,media'
+  'edit-mode'       = 'page=home&edit'
+  'add-widget'      = 'page=home&edit&sheet=widgets'
 }
 try {
   foreach ($k in $shots.Keys) {

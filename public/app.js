@@ -35,6 +35,26 @@ const TR = {
   'Rain': 'Yağmur', 'Heavy rain': 'Şiddetli yağmur', 'Freezing rain': 'Dondurucu yağmur', 'Light snow': 'Hafif kar', 'Snow': 'Kar', 'Heavy snow': 'Yoğun kar',
   'Snow grains': 'Kar taneleri', 'Showers': 'Sağanak', 'Violent showers': 'Şiddetli sağanak', 'Snow showers': 'Kar sağanağı', 'Thunderstorm': 'Gök gürültülü fırtına',
   'Thunderstorm, hail': 'Fırtına, dolu', 'Weather:': 'Hava durumu:', 'Theme default': 'Tema varsayılanı',
+  'Customize home screen': 'Ana ekranı düzenle', 'Add, remove, resize and reorder widgets.': 'Bileşen ekle, sil, boyutlandır ve sırala.',
+  'Add widget': 'Bileşen ekle', 'Done': 'Bitti', 'Website': 'Web sitesi', 'Photos': 'Fotoğraflar', 'Countdown': 'Geri sayım',
+  'Sticky note': 'Not', 'Apps': 'Uygulamalar', 'Steam games': 'Steam oyunları', 'Search…': 'Ara…', 'Add': 'Ekle', 'Added': 'Eklendi:',
+  'Name': 'Ad', 'Address (URL)': 'Adres (URL)', 'Icon': 'Simge', 'Color': 'Renk', 'Buttons': 'Düğmeler', 'Tap an app to add it.': 'Eklemek için bir uygulamaya dokunun.',
+  'No apps found.': 'Uygulama bulunamadı.', 'Some websites block being shown inside other pages.': 'Bazı siteler başka sayfaların içinde gösterilmeyi engeller.',
+  'Tap the gear to set a website': 'Site eklemek için ayar düğmesine dokunun', 'Zoom': 'Yakınlaştırma', 'Add photos': 'Fotoğraf ekle',
+  'Change every': 'Değiştirme sıklığı', 'Fill': 'Doldur', 'Fit': 'Sığdır', 'Title': 'Başlık', 'Date & time': 'Tarih ve saat', 'days': 'gün',
+  'Today!': 'Bugün!', 'Ended': 'Bitti', 'Game mode': 'Oyun modu', 'Off': 'Kapalı', 'Auto': 'Otomatik', 'On': 'Açık',
+  'Locks the mouse to the game screen so it can’t slip onto the Edge. Touch still works. Auto: only while a game is full screen.':
+    'Fareyi oyun ekranına kilitler, Edge’e kaymaz. Dokunmatik çalışmaya devam eder. Otomatik: sadece bir oyun tam ekrandayken.',
+  'Game mode on — mouse locked to the game screen': 'Oyun modu açık — fare oyun ekranına kilitli', 'Game mode: automatic': 'Oyun modu: otomatik',
+  'Game mode off': 'Oyun modu kapalı', 'Write something…': 'Bir şey yazın…', 'Loading apps…': 'Uygulamalar yükleniyor…', 'No Steam games found.': 'Steam oyunu bulunamadı.',
+  'Tap the gear to add buttons': 'Düğme eklemek için ayar düğmesine dokunun', 'Tap the gear to add photos': 'Fotoğraf eklemek için ayar düğmesine dokunun',
+  'Tap the gear to set a date': 'Tarih seçmek için ayar düğmesine dokunun', 'Any website, Twitch, a map…': 'Herhangi bir site, Twitch, harita…',
+  'Your own photo slideshow': 'Kendi fotoğraf slaytınız', 'Days until an event': 'Bir etkinliğe kalan gün', 'Quick text on the screen': 'Ekranda kısa not',
+  'Apps, games and websites': 'Uygulamalar, oyunlar ve siteler', 'Time, date, other cities': 'Saat, tarih, diğer şehirler',
+  'Now and next hours': 'Şimdi ve sonraki saatler', 'CPU, GPU, RAM, network': 'CPU, GPU, RAM, ağ', 'Music controls': 'Müzik kontrolleri',
+  'This month': 'Bu ay', 'Up to 4 cities': '4 şehre kadar', 'Pomodoro shortcut': 'Pomodoro kısayolu', 'Uploading…': 'Yükleniyor…',
+  'Upload failed': 'Yükleme başarısız', 'Opening…': 'Açılıyor…', 'Could not open': 'Açılamadı', 'Save': 'Kaydet', 'seconds': 'saniye',
+  'minutes': 'dakika', 'Remove widget': 'Bileşeni kaldır', 'Size': 'Boyut', 'Ends': 'Bitiş', 'Launcher': 'Başlatıcı',
 };
 
 // ---------------------------------------------------------------- settings
@@ -50,11 +70,9 @@ const DEFAULTS = {
     { city: 'London', tz: 'Europe/London' },
     { city: 'Tokyo', tz: 'Asia/Tokyo' },
   ],
-  home: [
-    { id: 'clock', on: true }, { id: 'weather', on: true }, { id: 'system', on: true },
-    { id: 'media', on: true }, { id: 'launcher', on: true }, { id: 'calendar', on: false },
-    { id: 'world', on: false }, { id: 'focus', on: false },
-  ],
+  // Home screen = ordered widget instances: { uid, type, size: 's'|'m'|'l', cfg }
+  home: ['clock', 'weather', 'system', 'media', 'launcher'].map(type => ({ uid: type, type, size: 'm', cfg: {} })),
+  gameMode: 'auto',
   dim: { on: true, from: 22, to: 7 },
   saver: { on: false, minutes: 15 },
   pomo: { work: 25, brk: 5 },
@@ -87,15 +105,19 @@ async function loadSettings() {
     try { remote = await (await fetch(API + '/api/settings', { cache: 'no-store' })).json(); } catch {}
   }
   S = merge(structuredClone(DEFAULTS), remote || local || {});
-  // keep any widget ids added in newer versions
-  for (const w of DEFAULTS.home) if (!S.home.find(h => h.id === w.id)) S.home.push({ ...w });
+  // v1.0 stored { id, on } toggles; turn them into widget instances.
+  S.home = (S.home || []).filter(h => h.type || h.on).map(h => h.type ? h : { uid: h.id, type: h.id, size: 'm', cfg: {} });
   // URL overrides (not saved): ?theme=aurora&lang=tr&accent=%233ee0c5&widgets=clock,weather,calendar
   if (params.get('theme')) S.theme = params.get('theme');
   if (params.get('lang')) S.lang = params.get('lang');
   if (params.get('accent')) S.accent = params.get('accent');
   if (params.get('widgets')) {
-    const ids = params.get('widgets').split(',');
-    S.home = [...ids.map(id => ({ id, on: true })), ...S.home.filter(h => !ids.includes(h.id)).map(h => ({ ...h, on: false }))];
+    const demoCfg = {
+      countdown: { title: 'Summer trip to Istanbul', date: new Date(Date.now() + 41 * 864e5 + 5 * 36e5).toISOString().slice(0, 16) },
+      note: { text: 'Squad night Friday 9 PM\nBring the new headset' },
+      web: { url: 'https://embed.windy.com/embed2.html?lat=35.2&lon=-80.8&zoom=5&overlay=wind', zoom: .8 },
+    };
+    S.home = params.get('widgets').split(',').map(type => ({ uid: type, type, size: 'm', cfg: DEMO ? structuredClone(demoCfg[type] || {}) : {} }));
   }
   if (DEMO) {
     S.dim.on = false;
@@ -248,6 +270,7 @@ async function pollStats() {
     push('up', stats.net?.up ?? 0);
   } catch { stats = null; }
   $('#railStatus').classList.toggle('on', !!stats);
+  updateGameBtn();
   updateWidgets('system'); updateWidgets('media');
   if (currentPage === 'system') renderSystemPage(false);
   if (currentPage === 'media') updateMediaPage();
@@ -303,23 +326,28 @@ document.addEventListener('click', (e) => {
 });
 
 // ---------------------------------------------------------------- launcher
-let launchers = [];
+// Launcher items: { name, target, icon (built-in) | img (picture URL), color }
+let defaultLaunchers = [];
 async function loadLaunchers() {
   if (DEMO) {
-    launchers = [['steam', 'Steam', '#66c0f4'], ['discord', 'Discord', '#5865f2'], ['spotify', 'Spotify', '#1ed760'], ['globe', 'Browser', '#f5a524'], ['play', 'YouTube', '#ff3b3b'], ['folder', 'Files', '#ffd166']]
-      .map(([icon, name, color]) => ({ id: icon, icon, name, color }));
+    defaultLaunchers = [['steam', 'Steam', '#66c0f4'], ['discord', 'Discord', '#5865f2'], ['spotify', 'Spotify', '#1ed760'], ['globe', 'Browser', '#f5a524'], ['play', 'YouTube', '#ff3b3b'], ['folder', 'Files', '#ffd166']]
+      .map(([icon, name, color]) => ({ icon, name, color, target: 'demo:' }));
     return;
   }
-  try { launchers = (await (await fetch(API + '/api/config')).json()).launchers; } catch { launchers = []; }
+  try {
+    defaultLaunchers = (await (await fetch(API + '/api/config')).json()).launchers.map(({ name, icon, color, target }) => ({ name, icon, color, target }));
+  } catch { defaultLaunchers = []; }
 }
+const launcherItems = (inst) => inst.cfg.items || (inst.cfg.items = structuredClone(defaultLaunchers));
+const launchIcon = (l) => l.img ? `<img src="${esc(l.img)}" alt="" draggable="false" onerror="this.replaceWith(Object.assign(document.createElement('b'),{className:'mono',textContent:${esc(JSON.stringify((l.name || '?').slice(0, 1).toUpperCase()))}}))">` : icon(l.icon || 'activity');
 document.addEventListener('click', async (e) => {
-  const b = e.target.closest('[data-launch]'); if (!b) return;
+  const b = e.target.closest('[data-launch]'); if (!b || editing) return;
   b.classList.remove('fired'); void b.offsetWidth; b.classList.add('fired');
   try {
-    const r = await fetch(API + '/api/launch', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: b.dataset.launch }) });
-    if (!r.ok) throw 0;
+    const r = await fetch(API + '/api/launch', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ target: b.dataset.launch }) });
+    if (!r.ok) throw r.status;
     toast(`${T('Opening')} ${b.dataset.name}`);
-  } catch { toast(T('PC link offline')); }
+  } catch (s) { toast(s === 400 ? `${T('Could not open')} ${b.dataset.name}` : T('PC link offline')); }
 });
 
 // ---------------------------------------------------------------- gauge
@@ -376,7 +404,7 @@ function spark(canvas, series, { max = null, color = null, fill = true, second =
 // ---------------------------------------------------------------- widgets
 const W = {
   clock: {
-    name: 'Clock & date', basis: 640,
+    name: 'Clock & date', desc: 'Time, date, other cities', ico: 'focus', basis: 640,
     html: () => `<div class="card-label">${icon('focus')} ${T('Local time')} <span class="right" data-tz></span></div>
       <div class="time"><span class="hm" data-hm></span><span class="side"><span class="sec" data-s></span><span class="ampm" data-ap></span></span></div>
       <div class="others" data-others></div>
@@ -408,7 +436,7 @@ const W = {
     },
   },
   weather: {
-    name: 'Weather', basis: 560,
+    name: 'Weather', desc: 'Now and next hours', ico: 'pin', basis: 560,
     html: () => `<div class="card-label">${icon('pin')} <span data-loc class="ellipsis"></span><span class="right" data-hl></span></div>
       <div class="now"><div class="wx-icon" data-ic></div><div class="col" style="gap:4px;min-width:0">
         <div class="temp num" data-t>—</div><div class="cond ellipsis" data-c>${T('Loading…')}</div></div></div>
@@ -450,7 +478,7 @@ const W = {
     },
   },
   system: {
-    name: 'System monitor', basis: 640,
+    name: 'System monitor', desc: 'CPU, GPU, RAM, network', ico: 'cpu', basis: 640,
     html: () => `<div class="card-label">${icon('cpu')} ${T('System')} <span class="right" data-host></span></div>
       <div class="gauges">${gauge('cpu', 'CPU')}${gauge('gpu', 'GPU')}${gauge('ram', 'RAM')}</div>
       <div class="sys-foot">
@@ -472,7 +500,7 @@ const W = {
     },
   },
   media: {
-    name: 'Now playing', basis: 540,
+    name: 'Now playing', desc: 'Music controls', ico: 'music', basis: 540,
     html: () => `<div class="card-label">${icon('music')} ${T('Now playing')} <span class="right" data-app></span></div>
       <div class="row" style="align-items:flex-start;gap:24px">
         <div class="art" data-art><div class="eq"><i></i><i></i><i></i><i></i></div></div>
@@ -500,15 +528,61 @@ const W = {
     },
   },
   launcher: {
-    name: 'App launcher', basis: 380,
-    html: () => `<div class="card-label">${icon('activity')} ${T('Launch')}</div>
-      <div class="launch-grid">${(launchers.length ? launchers : []).slice(0, 6).map(l =>
-        `<button class="launch" style="--c:${esc(l.color)}" data-launch="${esc(l.id)}" data-name="${esc(l.name)}">${icon(l.icon)}<span>${esc(l.name)}</span></button>`).join('')
-        || `<div class="offline-note">${T('Start the Edge Deck server to use the launcher.')}</div>`}</div>`,
+    name: 'App launcher', desc: 'Apps, games and websites', ico: 'activity', basis: 380, edit: editLauncher,
+    basisOf: (inst) => { const n = launcherItems(inst).length; return n <= 6 ? 380 : n <= 12 ? 540 : 700; },
+    html: (inst) => {
+      const items = launcherItems(inst), n = items.length;
+      const cols = n <= 1 ? 1 : n <= 6 ? 2 : n <= 12 ? 3 : 4;
+      return `<div class="card-label">${icon('activity')} ${esc(inst.cfg.title || T('Launch'))}</div>
+      <div class="launch-grid" style="grid-template-columns:repeat(${cols},1fr)">${items.map(l => /steamstatic/.test(l.img || '')
+        ? `<button class="launch game" style="--bg:url('${esc(l.img)}')" data-launch="${esc(l.target)}" data-name="${esc(l.name)}"><span class="ellipsis">${esc(l.name)}</span></button>`
+        : `<button class="launch ${n > 6 ? 'small' : ''}" style="--c:${esc(l.color || 'var(--accent)')}" data-launch="${esc(l.target)}" data-name="${esc(l.name)}">${launchIcon(l)}<span class="ellipsis">${esc(l.name)}</span></button>`).join('')
+        || `<div class="empty-note">${icon('gear')}<span>${T('Tap the gear to add buttons')}</span></div>`}</div>`;
+    },
+    update() {},
+  },
+  web: {
+    name: 'Website', desc: 'Any website, Twitch, a map…', ico: 'globe', basis: 760, edit: editWeb, isNew: true,
+    html: (inst) => inst.cfg.url
+      ? `<div class="frame-wrap"><iframe src="${esc(inst.cfg.url)}" style="--z:${inst.cfg.zoom || 1}" referrerpolicy="no-referrer"
+          allow="autoplay; encrypted-media; picture-in-picture; fullscreen" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-presentation"></iframe></div>`
+      : `<div class="card-label">${icon('globe')} ${T('Website')}</div><div class="empty-note">${icon('gear')}<span>${T('Tap the gear to set a website')}</span></div>`,
+    update() {},
+  },
+  photo: {
+    name: 'Photos', desc: 'Your own photo slideshow', ico: 'image', basis: 560, edit: editPhoto, isNew: true,
+    html: (inst) => (inst.cfg.srcs || []).length
+      ? `<div class="slides" style="--fit:${inst.cfg.fit === 'contain' ? 'contain' : 'cover'}">${inst.cfg.srcs.map(s => `<img src="${esc(s)}" alt="" draggable="false">`).join('')}</div>`
+      : `<div class="card-label">${icon('image')} ${T('Photos')}</div><div class="empty-note">${icon('gear')}<span>${T('Tap the gear to add photos')}</span></div>`,
+    update(el, inst) {
+      const imgs = $$('.slides img', el); if (!imgs.length) return;
+      const i = Math.floor(Date.now() / 1000 / (inst.cfg.every || 10)) % imgs.length;
+      imgs.forEach((im, k) => im.classList.toggle('on', k === i));
+    },
+  },
+  countdown: {
+    name: 'Countdown', desc: 'Days until an event', ico: 'hourglass', basis: 420, edit: editCountdown, isNew: true,
+    html: (inst) => `<div class="card-label">${icon('hourglass')} <span class="ellipsis">${esc(inst.cfg.title || T('Countdown'))}</span></div>
+      ${inst.cfg.date ? `<div class="cd-main num" data-cd></div><div class="cd-sub num" data-cs></div><div class="cd-when faint" data-cw></div>`
+        : `<div class="empty-note">${icon('gear')}<span>${T('Tap the gear to set a date')}</span></div>`}`,
+    update(el, inst) {
+      if (!inst.cfg.date) return;
+      const end = new Date(inst.cfg.date), ms = end - Date.now();
+      const main = $('[data-cd]', el), sub = $('[data-cs]', el);
+      $('[data-cw]', el).textContent = end.toLocaleString(LOC(), { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+      if (ms <= 0) { main.textContent = ms > -864e5 ? T('Today!') : T('Ended'); sub.textContent = ''; return; }
+      const d = Math.floor(ms / 864e5), h = Math.floor(ms % 864e5 / 36e5), m = Math.floor(ms % 36e5 / 6e4), s = Math.floor(ms % 6e4 / 1e3);
+      main.innerHTML = `${d}<small>${T('days')}</small>`;
+      sub.textContent = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    },
+  },
+  note: {
+    name: 'Sticky note', desc: 'Quick text on the screen', ico: 'note', basis: 420, isNew: true,
+    html: (inst) => `<textarea class="note-text" data-note="${esc(inst.uid)}" placeholder="${T('Write something…')}">${esc(inst.cfg.text || '')}</textarea>`,
     update() {},
   },
   calendar: {
-    name: 'Calendar', basis: 420,
+    name: 'Calendar', desc: 'This month', ico: 'calendar', basis: 420,
     html: () => `<div class="cal-head"><b data-m></b><span class="faint" data-y></span></div><div class="cal" data-cal></div>`,
     update(el) {
       const d = new Date(), key = d.toDateString();
@@ -527,7 +601,7 @@ const W = {
     },
   },
   world: {
-    name: 'World clocks', basis: 440,
+    name: 'World clocks', desc: 'Up to 4 cities', ico: 'globe', basis: 440,
     html: () => `<div class="card-label">${icon('globe')} ${T('World')}</div><div class="zones" data-z></div>`,
     update(el) {
       const d = new Date();
@@ -539,7 +613,7 @@ const W = {
     },
   },
   focus: {
-    name: 'Focus timer', basis: 360,
+    name: 'Focus timer', desc: 'Pomodoro shortcut', ico: 'focus', basis: 360,
     html: () => `<div class="card-label">${icon('focus')} ${T('Focus')}</div>
       <button class="col focus-mini grow" data-goto="focus"><div class="num" data-ft></div><div class="muted" data-fs></div></button>`,
     update(el) {
@@ -549,20 +623,237 @@ const W = {
   },
 };
 
+// ---------------------------------------------------------------- home screen + edit mode
+const SIZE = { s: .72, m: 1, l: 1.45 };
+let editing = false;
+const instOf = (uid) => S.home.find(h => h.uid === uid);
+
 function renderHome() {
   const row = $('#homeRow');
+  const scroll = row.scrollLeft;
   row.innerHTML = '';
-  S.home.filter(h => h.on && W[h.id]).forEach(h => {
-    const el = document.createElement('div');
-    el.className = `card w-${h.id}`; el.dataset.w = h.id;
-    el.style.flex = `1 1 ${W[h.id].basis}px`;
-    el.innerHTML = W[h.id].html();
+  S.home.filter(h => W[h.type]).forEach((h, i, list) => {
+    const def = W[h.type], el = document.createElement('div');
+    const basis = (def.basisOf ? def.basisOf(h) : def.basis) * (SIZE[h.size] || 1);
+    el.className = `card w-${h.type}`; el.dataset.w = h.type; el.dataset.uid = h.uid;
+    el.style.flex = `1 1 ${basis}px`; el.style.minWidth = `${Math.round(basis * .62)}px`;
+    el.innerHTML = def.html(h) + (editing ? `<div class="edit-bar">
+        <button class="eb" data-ed-move="-1" ${i === 0 ? 'disabled' : ''} aria-label="Move left">${icon('left')}</button>
+        <div class="eb-size">${['s', 'm', 'l'].map(s => `<button data-ed-size="${s}" class="${(h.size || 'm') === s ? 'on' : ''}">${s.toUpperCase()}</button>`).join('')}</div>
+        ${def.edit ? `<button class="eb" data-ed-cfg aria-label="Settings">${icon('gear')}</button>` : ''}
+        <button class="eb danger" data-ed-del aria-label="${T('Remove widget')}">${icon('trash')}</button>
+        <button class="eb" data-ed-move="1" ${i === list.length - 1 ? 'disabled' : ''} aria-label="Move right">${icon('right')}</button>
+      </div>` : '');
     row.appendChild(el);
-    W[h.id].update(el);
+    def.update(el, h);
+  });
+  if (editing) {
+    const add = document.createElement('button');
+    add.className = 'card add-tile'; add.dataset.edAdd = '';
+    add.innerHTML = `${icon('plus')}<span>${T('Add widget')}</span>`;
+    row.appendChild(add);
+  }
+  row.scrollLeft = scroll;
+  $('#stage').classList.toggle('editing', editing);
+  $('#editDone span').textContent = T('Done');
+  $('#editBtn').classList.toggle('active', editing);
+}
+function updateWidgets(type) {
+  $$(`#homeRow [data-w${type ? `="${type}"` : ''}]`).forEach(el => {
+    const inst = instOf(el.dataset.uid); if (inst) W[el.dataset.w].update(el, inst);
   });
 }
-function updateWidgets(id) {
-  $$(`#homeRow [data-w${id ? `="${id}"` : ''}]`).forEach(el => W[el.dataset.w].update(el));
+function setEditing(on) {
+  editing = on;
+  if (on && currentPage !== 'home') go('home');
+  renderHome();
+}
+$('#homeRow').addEventListener('click', (e) => {
+  if (!editing) return;
+  const card = e.target.closest('[data-uid]'), inst = card && instOf(card.dataset.uid);
+  let b;
+  if (e.target.closest('[data-ed-add]')) return openWidgetPicker();
+  if (!inst) return;
+  const i = S.home.indexOf(inst);
+  if ((b = e.target.closest('[data-ed-move]'))) {
+    const j = i + Number(b.dataset.edMove);
+    if (j >= 0 && j < S.home.length) [S.home[i], S.home[j]] = [S.home[j], S.home[i]];
+  } else if ((b = e.target.closest('[data-ed-size]'))) inst.size = b.dataset.edSize;
+  else if (e.target.closest('[data-ed-del]')) S.home.splice(i, 1);
+  else if (e.target.closest('[data-ed-cfg]')) return W[inst.type].edit(inst);
+  else return;
+  save(); renderHome();
+});
+$('#homeRow').addEventListener('input', (e) => {
+  const n = e.target.closest('[data-note]'); if (!n) return;
+  const inst = instOf(n.dataset.note); if (inst) { inst.cfg.text = n.value; save(); }
+});
+$('#editDone').addEventListener('click', () => setEditing(false));
+// Long-press empty space on the home screen also enters edit mode.
+let lp;
+$('#homeRow').addEventListener('pointerdown', (e) => {
+  if (editing || e.target.closest('button, input, textarea, iframe, a')) return;
+  lp = setTimeout(() => setEditing(true), 900);
+});
+['pointerup', 'pointercancel', 'pointermove'].forEach(ev => $('#homeRow').addEventListener(ev, (e) => {
+  if (ev !== 'pointermove' || Math.abs(e.movementX) + Math.abs(e.movementY) > 6) clearTimeout(lp);
+}));
+
+// ---------------------------------------------------------------- sheets (pop-up panels)
+function openSheet(title, body, { onClose, wide } = {}) {
+  const wrap = document.createElement('div');
+  wrap.className = 'sheet-wrap';
+  wrap.innerHTML = `<div class="sheet ${wide ? 'wide' : ''}"><div class="sheet-head"><b>${title}</b>
+    <button class="btn-done" data-sheet-close>${icon('check')} ${T('Done')}</button></div><div class="sheet-body">${body}</div></div>`;
+  stage.appendChild(wrap);
+  requestAnimationFrame(() => wrap.classList.add('open'));
+  const close = () => { wrap.classList.remove('open'); setTimeout(() => wrap.remove(), 250); onClose && onClose(); };
+  wrap.addEventListener('click', (e) => { if (e.target === wrap || e.target.closest('[data-sheet-close]')) close(); });
+  return { el: $('.sheet-body', wrap), close };
+}
+
+function openWidgetPicker() {
+  const types = Object.keys(W);
+  const sh = openSheet(T('Add widget'), `<div class="pick-grid">${types.map(t => `<button class="pick" data-pick="${t}">
+      <span class="pick-ico">${icon(W[t].ico || 'plus')}</span><b>${T(W[t].name)}</b><small>${T(W[t].desc || '')}</small>
+      ${W[t].isNew ? '<em>NEW</em>' : ''}</button>`).join('')}</div>`, { wide: true });
+  sh.el.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-pick]'); if (!b) return;
+    const inst = { uid: Math.random().toString(36).slice(2, 9), type: b.dataset.pick, size: 'm', cfg: b.dataset.pick === 'launcher' ? { items: [] } : {} };
+    S.home.push(inst); save(); renderHome(); sh.close();
+    requestAnimationFrame(() => { const row = $('#homeRow'); row.scrollLeft = row.scrollWidth; });
+    if (W[inst.type].edit) W[inst.type].edit(inst);
+  });
+}
+
+// Shared form bits for widget editors
+const field = (label, inner) => `<label class="fld"><span>${label}</span>${inner}</label>`;
+const choice = (name, opts, cur) => `<div class="seg" data-choice="${name}">${opts.map(([v, l]) =>
+  `<button type="button" data-v="${esc(v)}" class="${String(cur) === String(v) ? 'on' : ''}">${l}</button>`).join('')}</div>`;
+function bindChoices(root, onPick) {
+  root.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-choice] [data-v]'); if (!b) return;
+    const g = b.closest('[data-choice]');
+    $$('[data-v]', g).forEach(x => x.classList.toggle('on', x === b));
+    onPick(g.dataset.choice, b.dataset.v);
+  });
+}
+const refresh = () => { save(); renderHome(); };
+
+function editWeb(inst) {
+  const c = inst.cfg;
+  const sh = openSheet(T('Website'), `
+    ${field(T('Address (URL)'), `<input class="field" data-url value="${esc(c.url || '')}" placeholder="https://www.twitch.tv/…" inputmode="url" enterkeyhint="done">`)}
+    <div class="quick">${[['Twitch', 'https://www.twitch.tv/'], ['YouTube', 'https://www.youtube.com/embed/jfKfPfyJRdk'], ['Windy', 'https://embed.windy.com/embed2.html'], ['Google Maps', 'https://maps.google.com/maps?output=embed'], ['Clock', 'https://time.is/']]
+      .map(([n, u]) => `<button class="pill" data-quick="${esc(u)}">${n}</button>`).join('')}</div>
+    ${field(T('Zoom'), choice('zoom', [[.6, '60%'], [.8, '80%'], [1, '100%'], [1.25, '125%'], [1.5, '150%']], c.zoom || 1))}
+    <p class="hint">${T('Some websites block being shown inside other pages.')}</p>`, { onClose: refresh });
+  const url = $('[data-url]', sh.el);
+  const norm = (u) => (u = u.trim()) && !/^https?:\/\//i.test(u) ? 'https://' + u : u;
+  url.addEventListener('change', () => { c.url = norm(url.value); });
+  sh.el.addEventListener('click', (e) => { const q = e.target.closest('[data-quick]'); if (q) { url.value = c.url = q.dataset.quick; } });
+  bindChoices(sh.el, (k, v) => { c[k] = Number(v); });
+  sh.el.addEventListener('keydown', (e) => { if (e.key === 'Enter') { c.url = norm(url.value); sh.close(); } });
+}
+
+function editPhoto(inst) {
+  const c = inst.cfg; c.srcs ||= [];
+  const sh = openSheet(T('Photos'), `
+    <div class="thumbs" data-thumbs></div>
+    <label class="btn-xl upload">${icon('plus')} ${T('Add photos')}<input type="file" accept="image/*" multiple hidden data-file></label>
+    ${field(T('Change every'), choice('every', [[5, '5 s'], [10, '10 s'], [30, '30 s'], [60, '1 min'], [300, '5 min']], c.every || 10))}
+    ${field(T('Size'), choice('fit', [['cover', T('Fill')], ['contain', T('Fit')]], c.fit || 'cover'))}`, { onClose: refresh });
+  const draw = () => { $('[data-thumbs]', sh.el).innerHTML = c.srcs.map((s, i) => `<div class="thumb"><img src="${esc(s)}" alt=""><button data-rm="${i}" aria-label="Remove">${icon('x')}</button></div>`).join(''); };
+  draw();
+  sh.el.addEventListener('click', (e) => { const b = e.target.closest('[data-rm]'); if (b) { c.srcs.splice(+b.dataset.rm, 1); draw(); save(); } });
+  $('[data-file]', sh.el).addEventListener('change', async (e) => {
+    for (const f of e.target.files) {
+      toast(T('Uploading…'));
+      try {
+        const r = await (await fetch(API + '/api/upload', { method: 'POST', headers: { 'Content-Type': f.type }, body: f })).json();
+        if (!r.ok) throw 0; c.srcs.push(r.src); draw(); save();
+      } catch { toast(T('Upload failed')); }
+    }
+    e.target.value = '';
+  });
+  bindChoices(sh.el, (k, v) => { c[k] = k === 'every' ? Number(v) : v; });
+}
+
+function editCountdown(inst) {
+  const c = inst.cfg;
+  const sh = openSheet(T('Countdown'), `
+    ${field(T('Title'), `<input class="field" data-title value="${esc(c.title || '')}" maxlength="40" placeholder="Birthday, vacation, game release…">`)}
+    ${field(T('Date & time'), `<input class="field" type="datetime-local" data-date value="${esc(c.date || '')}">`)}`, { onClose: refresh });
+  $('[data-title]', sh.el).addEventListener('input', (e) => { c.title = e.target.value; });
+  $('[data-date]', sh.el).addEventListener('change', (e) => { c.date = e.target.value; });
+}
+
+// Launcher editor: current buttons on top, a picker of installed apps / Steam games / websites below.
+const LAUNCH_ICONS = ['activity', 'globe', 'play', 'music', 'folder', 'steam', 'discord', 'spotify', 'gear', 'cpu', 'home', 'note', 'image', 'gamepad'];
+const LAUNCH_COLORS = ['#f5b301', '#ff5a36', '#ff3b3b', '#ff4fd8', '#8a7dff', '#5865f2', '#2a8cff', '#3ee0c5', '#1ed760', '#ffffff'];
+let appList = null;
+function editLauncher(inst) {
+  const items = launcherItems(inst);
+  let tab = 'apps', query = '';
+  const sh = openSheet(T('Launcher'), `
+    <div class="sub-h" style="margin-top:0">${T('Buttons')}</div>
+    <div class="cur-items" data-cur></div>
+    <div class="tabs">${[['apps', T('Apps')], ['games', T('Steam games')], ['web', T('Website')]].map(([k, l]) => `<button class="pill" data-tab="${k}">${l}</button>`).join('')}
+      <input class="field search" data-q placeholder="${T('Search…')}" enterkeyhint="search"></div>
+    <div data-pane></div>`, { wide: true, onClose: refresh });
+  const cur = $('[data-cur]', sh.el), pane = $('[data-pane]', sh.el);
+  const drawCur = () => {
+    cur.innerHTML = items.map((l, i) => `<div class="cur" style="--c:${esc(l.color || 'var(--accent)')}">${launchIcon(l)}<span class="ellipsis">${esc(l.name)}</span>
+      <div class="cur-ctl"><button data-cmove="${i},-1" aria-label="Move left">${icon('left')}</button><button data-cdel="${i}" aria-label="Remove">${icon('x')}</button><button data-cmove="${i},1" aria-label="Move right">${icon('right')}</button></div></div>`).join('')
+      || `<p class="hint">${T('Tap an app to add it.')}</p>`;
+  };
+  const add = (item) => { items.push(item); drawCur(); save(); toast(`${T('Added')} ${item.name}`); };
+  const drawPane = async () => {
+    $$('[data-tab]', sh.el).forEach(b => b.classList.toggle('on', b.dataset.tab === tab));
+    $('[data-q]', sh.el).style.visibility = tab === 'web' ? 'hidden' : 'visible';
+    if (tab === 'web') {
+      pane.innerHTML = `<div class="web-form">
+        ${field(T('Name'), `<input class="field" data-wn maxlength="24" placeholder="YouTube">`)}
+        ${field(T('Address (URL)'), `<input class="field" data-wu placeholder="https://www.youtube.com" inputmode="url">`)}
+        ${field(T('Icon'), `<div class="icon-pick" data-wi>${LAUNCH_ICONS.map((ic, i) => `<button type="button" data-ic="${ic}" class="${i === 1 ? 'on' : ''}">${icon(ic)}</button>`).join('')}</div>`)}
+        ${field(T('Color'), `<div class="icon-pick" data-wc>${LAUNCH_COLORS.map((c, i) => `<button type="button" data-col="${c}" class="${i === 0 ? 'on' : ''}"><i style="background:${c}"></i></button>`).join('')}</div>`)}
+        <button class="btn-xl" data-wadd>${icon('plus')} ${T('Add')}</button></div>`;
+      return;
+    }
+    if (!appList) {
+      pane.innerHTML = `<p class="hint">${T('Loading apps…')}</p>`;
+      try { appList = await (await fetch(API + '/api/apps')).json(); } catch { appList = { apps: [], games: [] }; }
+    }
+    const list = (tab === 'games' ? appList.games : appList.apps).filter(a => a.name.toLowerCase().includes(query));
+    pane.innerHTML = list.length ? `<div class="app-grid ${tab}">${list.map((a, i) => `<button class="app" data-app="${i}">
+        ${tab === 'games' ? `<img class="hdr" src="${esc(a.img)}" alt="" loading="lazy">` : `<img src="${esc(a.img)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">`}
+        <span class="ellipsis">${esc(a.name)}</span></button>`).join('')}</div>`
+      : `<p class="hint">${T(tab === 'games' ? 'No Steam games found.' : 'No apps found.')}</p>`;
+    pane._list = list;
+  };
+  drawCur(); drawPane();
+  $('[data-q]', sh.el).addEventListener('input', (e) => { query = e.target.value.trim().toLowerCase(); drawPane(); });
+  sh.el.addEventListener('click', (e) => {
+    let b;
+    if ((b = e.target.closest('[data-tab]'))) { tab = b.dataset.tab; drawPane(); }
+    else if ((b = e.target.closest('[data-app]'))) {
+      const a = pane._list[+b.dataset.app];
+      add({ name: a.name.replace(/:.*$/, '').slice(0, 24), target: a.target, img: a.img, color: tab === 'games' ? '#66c0f4' : null });
+    }
+    else if ((b = e.target.closest('[data-cdel]'))) { items.splice(+b.dataset.cdel, 1); drawCur(); save(); }
+    else if ((b = e.target.closest('[data-cmove]'))) {
+      const [i, d] = b.dataset.cmove.split(',').map(Number), j = i + d;
+      if (j >= 0 && j < items.length) { [items[i], items[j]] = [items[j], items[i]]; drawCur(); save(); }
+    }
+    else if ((b = e.target.closest('[data-ic], [data-col]'))) { $$('button', b.parentElement).forEach(x => x.classList.toggle('on', x === b)); }
+    else if (e.target.closest('[data-wadd]')) {
+      let u = $('[data-wu]', pane).value.trim(); const n = $('[data-wn]', pane).value.trim();
+      if (!u || !n) return;
+      if (!/^[a-z][a-z0-9+.-]*:/i.test(u)) u = 'https://' + u;
+      add({ name: n, target: u, icon: $('[data-wi] .on', pane).dataset.ic, color: $('[data-wc] .on', pane).dataset.col });
+      $('[data-wu]', pane).value = $('[data-wn]', pane).value = '';
+    }
+  });
 }
 document.addEventListener('click', (e) => { const b = e.target.closest('[data-goto]'); if (b) go(b.dataset.goto); });
 
@@ -825,11 +1116,11 @@ function renderSettings() {
       ${S.saver.on ? `<div class="set-row"><div>${T('After')}</div>${seg('saver.minutes', [[5, '5 min'], [15, '15 min'], [30, '30 min'], [60, '1 h']], S.saver.minutes)}</div>` : ''}
     </div>
     <div class="card"><div class="sub-h">${T('Home screen widgets')}</div>
-      <div class="widget-list">${S.home.map((h, i) => `<div class="widget-item ${h.on ? '' : 'off'}">
-        <span class="nm">${T(W[h.id]?.name || h.id)}</span>
-        <button class="icon-btn ghost" data-wup="${i}" aria-label="Move up">${icon('up')}</button>
-        <button class="icon-btn ghost" data-wdown="${i}" aria-label="Move down">${icon('down')}</button>
-        ${tog('home.' + i, h.on)}</div>`).join('')}</div>
+      <button class="btn-xl" data-customize>${icon('edit')} ${T('Customize home screen')}</button>
+      <p class="hint" style="margin-top:10px">${T('Add, remove, resize and reorder widgets.')}</p>
+      <div class="sub-h">${T('Game mode')}</div>
+      <div class="set-row"><div>${T('Game mode')}<div class="hint">${T('Locks the mouse to the game screen so it can’t slip onto the Edge. Touch still works. Auto: only while a game is full screen.')}</div></div>
+        ${seg('gameMode', [['off', T('Off')], ['auto', T('Auto')], ['on', T('On')]], S.gameMode)}</div>
       <div class="sub-h">${T('Format')}</div>
       <div class="set-row"><div>${T('Clock')}</div>${seg('clock24', [[false, T('12-hour')], [true, T('24-hour')]], S.clock24)}</div>
       <div class="set-row"><div>${T('Show seconds')}</div>${tog('showSeconds', S.showSeconds)}</div>
@@ -857,13 +1148,28 @@ function renderSettings() {
 function setPath(path, val) {
   const ks = path.split('.'); let o = S;
   while (ks.length > 1) o = o[ks.shift()];
-  const k = ks[0];
-  if (Array.isArray(o) && o[k] && typeof o[k] === 'object' && 'on' in o[k]) o[k].on = val; else o[k] = val;
+  o[ks[0]] = val;
 }
-function getPath(path) {
-  const v = path.split('.').reduce((o, k) => o?.[k], S);
-  return (v && typeof v === 'object' && 'on' in v) ? v.on : v;
+const getPath = (path) => path.split('.').reduce((o, k) => o?.[k], S);
+
+// ---------------------------------------------------------------- game mode
+async function setGameMode(mode, quiet) {
+  S.gameMode = mode; save();
+  try { await fetch(API + '/api/gamemode', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ mode }) }); }
+  catch { if (!quiet) toast(T('PC link offline')); return; }
+  if (!quiet) toast(T(mode === 'on' ? 'Game mode on — mouse locked to the game screen' : mode === 'auto' ? 'Game mode: automatic' : 'Game mode off'));
+  updateGameBtn();
 }
+function updateGameBtn() {
+  const b = $('#gameBtn'), g = stats?.game;
+  b.classList.toggle('on', !!g?.active);
+  b.dataset.mode = S.gameMode;
+  $('.badge', b).textContent = S.gameMode === 'auto' ? 'A' : S.gameMode === 'on' ? 'ON' : '';
+  b.title = `${T('Game mode')}: ${T(S.gameMode === 'on' ? 'On' : S.gameMode === 'auto' ? 'Auto' : 'Off')}${g?.game ? ' · ' + g.game : ''}`;
+}
+// Rail button: switch between "always on" and the usual automatic mode.
+$('#gameBtn').addEventListener('click', () => setGameMode(S.gameMode === 'on' ? 'auto' : 'on'));
+$('#editBtn').addEventListener('click', () => setEditing(!editing));
 function settingsChanged(kind) {
   save(); applyTheme(); renderSettings();
   if (kind !== 'appearance') renderHome();
@@ -880,11 +1186,9 @@ $('#page-settings').addEventListener('click', (e) => {
     let v = b.dataset.v; v = v === 'true' ? true : v === 'false' ? false : isNaN(v) ? v : Number(v);
     const unitChanged = b.dataset.set === 'tempUnit' && S.tempUnit !== v;
     setPath(b.dataset.set, v); settingsChanged(unitChanged ? 'weather' : undefined);
+    if (b.dataset.set === 'gameMode') setGameMode(v);
   }
-  else if ((b = t.closest('[data-wup]')) || (b = t.closest('[data-wdown]'))) {
-    const i = +(b.dataset.wup ?? b.dataset.wdown), j = i + (b.dataset.wup != null ? -1 : 1);
-    if (j >= 0 && j < S.home.length) { [S.home[i], S.home[j]] = [S.home[j], S.home[i]]; settingsChanged(); }
-  }
+  else if (t.closest('[data-customize]')) setEditing(true);
   else if ((b = t.closest('[data-zdel]'))) { S.zones.splice(+b.dataset.zdel, 1); settingsChanged(); }
   else if ((b = t.closest('[data-city]'))) {
     const key = b.dataset.target === 'location2' ? 'location2' : 'location';
@@ -918,6 +1222,7 @@ $('#page-settings').addEventListener('submit', async (e) => {
 const ORDER = ['home', 'system', 'media', 'focus', 'world', 'settings'];
 let currentPage = 'home';
 function go(page) {
+  if (page !== 'home' && editing) { editing = false; renderHome(); }
   currentPage = page;
   $$('.page').forEach(p => p.classList.toggle('active', p.id === 'page-' + page));
   $$('.rail-btn').forEach(b => b.classList.toggle('active', b.dataset.page === page));
@@ -934,7 +1239,8 @@ $('#rail').addEventListener('click', (e) => { const b = e.target.closest('[data-
 // Horizontal swipe between pages.
 let sw = null;
 $('#pages').addEventListener('pointerdown', (e) => {
-  if (e.target.closest('input, textarea, select, .todo-list, .settings-page .card')) return;
+  if (editing || e.target.closest('input, textarea, select, iframe, .todo-list, .settings-page .card, .sheet-wrap')) return;
+  const row = e.target.closest('.home-row'); if (row && row.scrollWidth > row.clientWidth + 4) return;
   sw = { x: e.clientX, y: e.clientY, t: Date.now() };
 });
 addEventListener('pointerup', (e) => {
@@ -979,13 +1285,16 @@ async function boot() {
   applyTheme();
   await loadLaunchers();
   renderHome();
+  if (!DEMO) setGameMode(S.gameMode, true);
   if (DEMO) { pomo.remaining = 17 * 60 + 42; pomo.sessions = 2; }
   let start = params.get('page') || 'home'; try { start = params.get('page') || sessionStorage.getItem('edgeDeckPage') || 'home'; } catch {}
   go(ORDER.includes(start) ? start : 'home');
+  if (params.has('edit')) setEditing(true);
+  if (params.get('sheet') === 'widgets') openWidgetPicker();
   pollStats(); setInterval(pollStats, 1500);
   loadWeather(); setInterval(loadWeather, 15 * 60e3);
   setInterval(() => {
-    updateWidgets('clock'); updateWidgets('world'); updateWidgets('calendar'); updateWidgets('focus');
+    ['clock', 'world', 'calendar', 'focus', 'photo', 'countdown'].forEach(updateWidgets);
     pomo.tick(); if (currentPage === 'focus') updateFocus();
     if (currentPage === 'media') updateMediaPage();
   }, 1000);

@@ -12,7 +12,7 @@ $src = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 $base = Join-Path $env:LOCALAPPDATA 'EdgeDeck'
 $app = Join-Path $base 'app'
 
-function Step($n, $text) { Write-Host ''; Write-Host "  [$n/5] $text" -ForegroundColor Cyan }
+function Step($n, $text) { Write-Host ''; Write-Host "  [$n/6] $text" -ForegroundColor Cyan }
 function Fail($text) {
   Write-Host "  HATA: $text" -ForegroundColor Red
   if (-not $Silent) { [void][System.Windows.Forms.MessageBox]::Show("Kurulum tamamlanamadı:`n`n$text", 'Edge Deck', 'OK', 'Error') }
@@ -59,8 +59,15 @@ try {
     Write-Host "        Node.js $($lts.version) hazır."
   } else { Write-Host '        Node.js zaten var.' }
 
-  # 4. Shortcuts
-  Step 4 'Kısayollar oluşturuluyor...'
+  # 4. HTTPS certificate for iCUE's Web URL widget
+  Step 4 'iCUE için güvenli bağlantı hazırlanıyor...'
+  if (-not $Silent) {
+    try { & (Join-Path $app 'installer\cert.ps1') -App $app }
+    catch { Write-Host '        Sertifika eklenmedi. Panel çalışır, ama iCUE içinde açılmaz.' -ForegroundColor Yellow }
+  }
+
+  # 5. Shortcuts
+  Step 5 'Kısayollar oluşturuluyor...'
   $ps = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"
   $icon = Join-Path $app 'public\icon.ico'
   $ws = New-Object -ComObject WScript.Shell
@@ -82,8 +89,8 @@ try {
   New-Shortcut (Join-Path $menu 'Edge Deck.lnk') $startArgs 'Edge Deck panelini aç'
   New-Shortcut (Join-Path $menu 'Edge Deck Kaldır.lnk') "-File `"$app\installer\uninstall.ps1`"" 'Edge Deck kaldır'
 
-  # 5. Start
-  Step 5 'Edge Deck başlatılıyor...'
+  # 6. Start
+  Step 6 'Edge Deck başlatılıyor...'
   if ($Silent) { & (Join-Path $app 'start.ps1') -Quiet } else { & (Join-Path $app 'start.ps1') }
 } catch { Fail $_.Exception.Message }
 
@@ -95,5 +102,6 @@ if ($Silent) { return }
   "- Panel XENEON EDGE ekranında açıldı (ekran bulunduysa).`n" +
   "- Bilgisayar her açıldığında kendiliğinden başlar.`n" +
   "- Kapatırsanız masaüstündeki 'Edge Deck' simgesiyle tekrar açabilirsiniz.`n`n" +
+  "iCUE içinde kullanmak için: Web URL widget'ı ekleyin, boyutu XL yapın ve adres olarak şunu yazın:`nhttps://localhost:5281`n`n" +
   "Dil: Ayarlar (dişli simgesi) > Language > Türkçe",
   'Edge Deck', 'OK', 'Information')

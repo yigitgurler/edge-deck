@@ -41,7 +41,7 @@ if (-not $edge) {
   Show-Msg ("XENEON EDGE ekranı Windows'ta görünmüyor.`n`n" +
     "Seçenek 1 (önerilen): iCUE'yu açın, XENEON EDGE'e girin ve ekranın iCUE tarafından kontrol edilmesini kapatın. " +
     "Sonra masaüstündeki 'Edge Deck' simgesine çift tıklayın.`n`n" +
-    "Seçenek 2: iCUE'da Edge'e bir 'Web URL' widget'ı ekleyin ve adres olarak şunu yazın:`n$url")
+    "Seçenek 2: iCUE'da Edge'e bir 'Web URL' widget'ı ekleyin, boyutu XL yapın ve adres olarak şunu yazın:`nhttps://localhost:$($port + 1)")
   return
 }
 $b = $edge.Bounds

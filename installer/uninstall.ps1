@@ -6,6 +6,8 @@ if ($ok -ne 'Yes') { return }
 $base = Join-Path $env:LOCALAPPDATA 'EdgeDeck'
 $stop = Join-Path $base 'app\stop.ps1'
 if (Test-Path $stop) { & $stop; Start-Sleep -Seconds 1 }
+# Take the localhost certificate back out of the trusted list (Windows asks to confirm).
+try { & (Join-Path $base 'app\installer\cert.ps1') -App (Join-Path $base 'app') -Remove } catch { }
 
 Remove-Item (Join-Path ([Environment]::GetFolderPath('Desktop')) 'Edge Deck.lnk') -ErrorAction SilentlyContinue
 Remove-Item (Join-Path ([Environment]::GetFolderPath('Startup')) 'Edge Deck.lnk') -ErrorAction SilentlyContinue
