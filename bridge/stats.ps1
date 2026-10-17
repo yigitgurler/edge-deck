@@ -3,6 +3,7 @@
 # Uses CIM perf classes (not Get-Counter) so it works on any Windows display language.
 $ErrorActionPreference = 'SilentlyContinue'
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+Add-Type -Path (Join-Path $PSScriptRoot 'native.cs') -ReferencedAssemblies System.Core
 
 # ---- Media session (Windows Global System Media Transport Controls) ----
 $mediaMgr = $null
@@ -50,12 +51,15 @@ if (-not $nvsmi -and (Test-Path "$env:SystemRoot\System32\nvidia-smi.exe")) { $n
 
 function Get-Gpu {
   if ($nvsmi) {
-    $r = & $nvsmi --query-gpu=name,utilization.gpu,temperature.gpu,memory.used,memory.total,power.draw --format=csv,noheader,nounits 2>$null | Select-Object -First 1
+    $r = & $nvsmi --query-gpu=name,utilization.gpu,temperature.gpu,memory.used,memory.total,power.draw,fan.speed,clocks.gr,clocks.mem --format=csv,noheader,nounits 2>$null | Select-Object -First 1
     if ($r) {
       $f = $r.Split(',') | ForEach-Object { $_.Trim() }
       return @{ name = $f[0]; load = [double]$f[1]; temp = [double]$f[2]
         vramUsed = [double]$f[3] * 1MB; vramTotal = [double]$f[4] * 1MB
-        power = if ($f[5] -match '^[\d.]+$') { [double]$f[5] } else { $null } }
+        power = if ($f[5] -match '^[\d.]+$') { [double]$f[5] } else { $null }
+        fan = if ($f[6] -match '^[\d.]+$') { [double]$f[6] } else { $null }
+        clock = if ($f[7] -match '^[\d.]+$') { [double]$f[7] } else { $null }
+        memClock = if ($f[8] -match '^[\d.]+$') { [double]$f[8] } else { $null } }
     }
   }
   $eng = Get-CimInstance Win32_PerfFormattedData_GPUPerformanceCounters_GPUEngine |
@@ -83,11 +87,17 @@ while ($true) {
   if ($diskTick -le 0) { $disks = @(Get-Disks); $diskTick = 20 }
   $diskTick--
 
+  $audio = $null
+  try { $audio = @{ level = [math]::Round([EdgeAudio]::Get() * 100); muted = [EdgeAudio]::Muted() } } catch { }
+  $fpsRaw = [EdgeFps]::Read().Split('|')
+
   $out = @{
     gpu   = Get-Gpu
     net   = @{ down = [double]$down; up = [double]$up }
     disks = $disks
     media = Get-Media
+    audio = $audio
+    fps   = @{ fps = [double]$fpsRaw[0]; app = $fpsRaw[1] }
   }
   [Console]::Out.WriteLine(($out | ConvertTo-Json -Compress -Depth 4))
   [Console]::Out.Flush()

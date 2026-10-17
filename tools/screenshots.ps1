@@ -24,6 +24,11 @@ $shots = [ordered]@{
   'widgets-new'     = 'page=home&widgets=clock,countdown,web,note,media'
   'edit-mode'       = 'page=home&edit'
   'add-widget'      = 'page=home&edit&sheet=widgets'
+  'screen-sensors'  = 'page=home&screen=1'
+  'screen-fun'      = 'page=home&screen=2'
+  'keyboard'        = 'page=home&widgets=keyboard,touchpad'
+  'deck'            = 'page=home&widgets=deck:l,sensor2,volume,twitchchat'
+  'stacked'         = 'page=home&widgets=clock,weather^,sensorchart:l,fps,sensorlist^,media,aqi'
 }
 try {
   foreach ($k in $shots.Keys) {

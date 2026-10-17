@@ -74,11 +74,19 @@ function sendControl(cmd) {
 }
 
 // Optional: LibreHardwareMonitor "Remote Web Server" (port 8085) for CPU/GPU temps.
-let lhm = { cpuTemp: null, gpuTemp: null };
-function walk(node, out) {
+// Every sensor it reports (temps, fans, clocks, loads, power…) is offered in the sensor widgets.
+let lhm = { cpuTemp: null, gpuTemp: null, sensors: [] };
+const LHM_TYPES = /^(Temperature|Load|Fan|Clock|Power|Voltage|Data|SmallData|Throughput|Control|Level|Factor|Frequency)$/;
+function walk(node, hw, out) {
   if (!node) return;
-  if (node.Type === 'Temperature' || (node.Value && /°C/.test(node.Value))) out.push(node);
-  (node.Children || []).forEach(c => walk(c, out));
+  // Hardware nodes carry an ImageURL; remember the nearest one as the sensor's device name.
+  const here = node.ImageURL && node.Text && !node.Value ? node.Text : hw;
+  if (node.Type && LHM_TYPES.test(node.Type) && node.Value && node.Value !== '-') {
+    const m = /^(-?[\d.,]+)\s*(.*)$/.exec(String(node.Value).trim());
+    if (m) out.push({ id: node.SensorId || `${here}/${node.Text}/${node.Type}`, name: node.Text, hw: here, type: node.Type,
+      value: parseFloat(m[1].replace(',', '.')), unit: m[2] });
+  }
+  (node.Children || []).forEach(c => walk(c, here, out));
 }
 function pollLhm() {
   const url = config.libreHardwareMonitorUrl || 'http://127.0.0.1:8085/data.json';
@@ -87,43 +95,27 @@ function pollLhm() {
     res.on('data', d => body += d);
     res.on('end', () => {
       try {
-        const temps = []; walk(JSON.parse(body), temps);
-        const val = n => parseFloat(String(n.Value).replace(',', '.'));
-        const cpu = temps.find(t => /package|tctl|tdie|core \(tctl/i.test(t.Text)) || temps.find(t => /cpu/i.test(t.Text));
-        const gpu = temps.find(t => /gpu core|gpu hot spot|gpu/i.test(t.Text));
-        lhm = { cpuTemp: cpu ? val(cpu) : null, gpuTemp: gpu ? val(gpu) : null };
-      } catch { lhm = { cpuTemp: null, gpuTemp: null }; }
+        const sensors = []; walk(JSON.parse(body), '', sensors);
+        const temps = sensors.filter(s => s.type === 'Temperature');
+        const cpu = temps.find(t => /package|tctl|tdie/i.test(t.name) && /cpu|ryzen|intel|core/i.test(t.hw)) || temps.find(t => /cpu/i.test(t.name));
+        const gpu = temps.find(t => /gpu core|gpu hot spot/i.test(t.name)) || temps.find(t => /gpu/i.test(t.name));
+        lhm = { cpuTemp: cpu ? cpu.value : null, gpuTemp: gpu ? gpu.value : null, sensors };
+      } catch { lhm = { cpuTemp: null, gpuTemp: null, sensors: [] }; }
     });
-  }).on('error', () => { lhm = { cpuTemp: null, gpuTemp: null }; });
+  }).on('error', () => { lhm = { cpuTemp: null, gpuTemp: null, sensors: [] }; });
 }
 setInterval(pollLhm, 3000); pollLhm();
 
-// ---------- Game mode (cursor lock + Edge window that never steals focus) ----------
-let game = { mode: 'auto', active: false, game: null };
-const MODE_FILE = path.join(ROOT, 'cache', 'gamemode.txt');
-function startGameMode() {
+// ---------- Window helper: the Edge Deck window never steals focus (bridge/window.ps1) ----------
+const TYPING_FILE = path.join(ROOT, 'cache', 'typing.txt');
+function startWindowHelper() {
   if (!IS_WIN) return;
-  const gameProc = spawn('powershell.exe', ['-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass',
-    '-File', path.join(ROOT, 'bridge', 'gamemode.ps1'), '-ModeFile', MODE_FILE, '-ServerPid', String(process.pid)], { windowsHide: true });
-  let buf = '';
-  gameProc.stdout.on('data', d => {
-    buf += d.toString('utf8');
-    let i;
-    while ((i = buf.indexOf('\n')) >= 0) {
-      const line = buf.slice(0, i).trim(); buf = buf.slice(i + 1);
-      if (line.startsWith('{')) try { game = { ...game, ...JSON.parse(line) }; } catch {}
-    }
-  });
-  gameProc.stderr.on('data', d => process.env.EDGE_DECK_DEBUG && console.error('[game]', d.toString()));
-  gameProc.on('exit', () => setTimeout(startGameMode, 2000));
+  const p = spawn('powershell.exe', ['-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass',
+    '-File', path.join(ROOT, 'bridge', 'window.ps1'), '-TypingFile', TYPING_FILE, '-ServerPid', String(process.pid)], { windowsHide: true });
+  p.stderr.on('data', d => process.env.EDGE_DECK_DEBUG && console.error('[window]', d.toString()));
+  p.on('exit', () => setTimeout(startWindowHelper, 2000));
 }
-function setGameMode(mode) {
-  game.mode = mode;
-  fs.mkdirSync(path.dirname(MODE_FILE), { recursive: true });
-  fs.writeFileSync(MODE_FILE, mode);
-}
-try { setGameMode(JSON.parse(fs.readFileSync(SETTINGS_PATH, 'utf8')).gameMode || 'auto'); } catch { setGameMode('auto'); }
-startGameMode();
+startWindowHelper();
 
 // ---------- Installed apps + Steam games for the launcher picker ----------
 const ICON_DIR = path.join(ROOT, 'cache', 'icons');
@@ -214,8 +206,8 @@ function validTarget(t) {
 // ---------- HTTP ----------
 const MIME = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8',
   '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon', '.webmanifest': 'application/manifest+json',
-  '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.gif': 'image/gif' };
-const IMG_EXT = { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/webp': 'webp', 'image/gif': 'gif' };
+  '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.gif': 'image/gif', '.mp4': 'video/mp4', '.webm': 'video/webm' };
+const IMG_EXT = { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/webp': 'webp', 'image/gif': 'gif', 'video/mp4': 'mp4', 'video/webm': 'webm' };
 
 function json(res, code, data) {
   res.writeHead(code, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
@@ -273,7 +265,9 @@ const server = http.createServer(async (req, res) => {
       net: bridge.net,
       disks: bridge.disks,
       media: bridge.media,
-      game,
+      audio: bridge.audio,
+      fps: bridge.fps,
+      lhm: lhm.sensors,
       bridgeAge: bridge.ts ? Date.now() - bridge.ts : null,
     });
   }
@@ -293,13 +287,16 @@ const server = http.createServer(async (req, res) => {
   if (p === '/api/upload' && req.method === 'POST') {
     const ext = IMG_EXT[(req.headers['content-type'] || '').split(';')[0]];
     if (!ext) return json(res, 415, { ok: false });
-    try {
-      const buf = await readRaw(req, 20 * 2 ** 20);
-      fs.mkdirSync(UPLOAD_DIR, { recursive: true });
-      const name = `${Date.now().toString(36)}-${crypto.randomBytes(4).toString('hex')}.${ext}`;
-      fs.writeFileSync(path.join(UPLOAD_DIR, name), buf);
-      return json(res, 200, { ok: true, src: `/uploads/${name}` });
-    } catch { return json(res, 413, { ok: false }); }
+    // Streamed to disk so large videos don't sit in memory. Limit: 25 MB images, 500 MB videos.
+    fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+    const name = `${Date.now().toString(36)}-${crypto.randomBytes(4).toString('hex')}.${ext}`;
+    const file = path.join(UPLOAD_DIR, name), max = (ext === 'mp4' || ext === 'webm' ? 500 : 25) * 2 ** 20;
+    const out = fs.createWriteStream(file); let n = 0, failed = false;
+    req.on('data', d => { n += d.length; if (n > max && !failed) { failed = true; req.unpipe(out); out.destroy(); fs.rm(file, () => {}); json(res, 413, { ok: false }); } });
+    req.pipe(out);
+    out.on('finish', () => { if (!failed) json(res, 200, { ok: true, src: `/uploads/${name}` }); });
+    out.on('error', () => { if (!failed) { failed = true; json(res, 500, { ok: false }); } });
+    return;
   }
 
   if (p.startsWith('/uploads/')) {
@@ -308,12 +305,38 @@ const server = http.createServer(async (req, res) => {
     return sendFile(res, file);
   }
 
-  if (p === '/api/gamemode' && req.method === 'POST') {
-    const { mode } = await readBody(req);
-    if (!['off', 'on', 'auto'].includes(mode)) return json(res, 400, { ok: false });
-    setGameMode(mode);
-    return json(res, 200, { ok: true, game });
+  // Volume, shortcut keys, typing and touchpad. Inputs are validated before reaching the control process.
+  if (p === '/api/volume' && req.method === 'POST') {
+    const b = await readBody(req);
+    if (b.mute) return json(res, 200, { ok: sendControl({ type: 'mute' }) });
+    const level = Number(b.level);
+    if (!(level >= 0 && level <= 1)) return json(res, 400, { ok: false });
+    return json(res, 200, { ok: sendControl({ type: 'volume', level }) });
   }
+  if (p === '/api/keys' && req.method === 'POST') {
+    const { vks } = await readBody(req);
+    if (!Array.isArray(vks) || !vks.length || vks.length > 6 || !vks.every(v => Number.isInteger(v) && v > 0 && v < 255)) return json(res, 400, { ok: false });
+    return json(res, 200, { ok: sendControl({ type: 'keys', vks }) });
+  }
+  if (p === '/api/text' && req.method === 'POST') {
+    const { text } = await readBody(req);
+    if (typeof text !== 'string' || !text || text.length > 2000) return json(res, 400, { ok: false });
+    return json(res, 200, { ok: sendControl({ type: 'text', text }) });
+  }
+  if (p === '/api/mouse' && req.method === 'POST') {
+    const b = await readBody(req);
+    if (!['move', 'click', 'dbl', 'down', 'up', 'scroll'].includes(b.op)) return json(res, 400, { ok: false });
+    const n = (v) => Math.max(-4000, Math.min(4000, Math.round(Number(v) || 0)));
+    return json(res, 200, { ok: sendControl({ type: 'mouse', op: b.op, dx: n(b.dx), dy: n(b.dy), button: b.button === 'right' ? 'right' : 'left' }) });
+  }
+  // While a text field on the Edge has focus, let its window take keyboard focus (see bridge/window.ps1).
+  if (p === '/api/typing' && req.method === 'POST') {
+    const { on } = await readBody(req);
+    fs.mkdirSync(path.dirname(TYPING_FILE), { recursive: true });
+    fs.writeFileSync(TYPING_FILE, on ? '1' : '0');
+    return json(res, 200, { ok: true });
+  }
+
 
   if (p.startsWith('/api/media/') && req.method === 'POST') {
     const cmd = p.split('/').pop();

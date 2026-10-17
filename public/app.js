@@ -55,9 +55,50 @@ const TR = {
   'This month': 'Bu ay', 'Up to 4 cities': '4 şehre kadar', 'Pomodoro shortcut': 'Pomodoro kısayolu', 'Uploading…': 'Yükleniyor…',
   'Upload failed': 'Yükleme başarısız', 'Opening…': 'Açılıyor…', 'Could not open': 'Açılamadı', 'Save': 'Kaydet', 'seconds': 'saniye',
   'minutes': 'dakika', 'Remove widget': 'Bileşeni kaldır', 'Size': 'Boyut', 'Ends': 'Bitiş', 'Launcher': 'Başlatıcı',
+  'More sensors (fans, CPU temperature, voltages): install LibreHardwareMonitor and turn on Options → Remote Web Server.':
+    'Daha fazla sensör (fanlar, CPU sıcaklığı, voltajlar) için LibreHardwareMonitor kurup Options → Remote Web Server seçeneğini açın.',
+  'Tap the gear to pick a video': 'Video seçmek için ayar düğmesine dokunun', 'Tap the gear to pick a channel': 'Kanal seçmek için ayar düğmesine dokunun',
+  'Sensors': 'Sensörler', 'Install MSI Afterburner (RivaTuner) to see FPS.': 'FPS için MSI Afterburner (RivaTuner) kurun.', 'No game running': 'Açık oyun yok',
+  'Stopwatch': 'Kronometre', 'Decision Coin': 'Yazı Tura', 'Tap to flip': 'Atmak için dokun', 'Air Quality': 'Hava Kalitesi', 'Touchpad': 'Touchpad',
+  '1 finger: move · tap: click · 2 fingers: scroll / right click': '1 parmak: hareket · dokun: tıkla · 2 parmak: kaydır / sağ tık',
+  'Left click': 'Sol tık', 'Right click': 'Sağ tık', 'Stop': 'Durdur', 'Lap': 'Tur', 'Yes': 'Evet', 'No': 'Hayır', 'Heads': 'Yazı', 'Tails': 'Tura',
+  'Video, live stream or playlist link': 'Video, canlı yayın ya da oynatma listesi linki', 'Sound': 'Ses', 'Muted': 'Sessiz', 'With sound': 'Sesli',
+  'Copy the link from the YouTube address bar or the Share button.': 'Linki YouTube adres çubuğundan ya da Paylaş düğmesinden kopyalayın.',
+  'Channel name': 'Kanal adı', 'Dashboard address': 'Gösterge paneli adresi',
+  'SimHub must be running. In SimHub open Dash Studio, pick a dashboard and copy its web address here.': 'SimHub açık olmalı. SimHub’da Dash Studio’yu açıp bir panel seçin ve web adresini buraya yapıştırın.',
+  'Sensor': 'Sensör', 'Clock Face': 'Kadran Saat', 'City': 'Şehir', 'Style': 'Stil', 'Classic': 'Klasik', 'Minimal': 'Sade', 'Second hand': 'Saniye ibresi',
+  'Sides': 'Yüzler', 'Custom': 'Özel', 'Virtual Keyboard': 'Sanal Klavye', 'Layout': 'Düzen',
+  'Keys are typed into whatever app is in front on your main screen. Ctrl / Alt / Win / Shift stay pressed for the next key.': 'Tuşlar ana ekranda öndeki uygulamaya yazılır. Ctrl / Alt / Win / Shift bir sonraki tuşa kadar basılı kalır.',
+  'Virtual Touchpad': 'Sanal Touchpad', 'Speed': 'Hız', 'Slow': 'Yavaş', 'Normal': 'Normal', 'Fast': 'Hızlı', 'Very fast': 'Çok hızlı',
+  'Stack under the previous widget': 'Öncekinin altına yerleştir', 'Screen': 'Ekran', 'Delete screen': 'Ekranı sil',
+  'Delete this screen and its widgets?': 'Bu ekran ve üzerindeki bileşenler silinsin mi?', 'Photos & videos': 'Fotoğraf ve video',
+  'Shortcut keys': 'Kısayol tuşları', 'Media & more': 'Medya ve diğer', 'tap a button to edit it': 'düzenlemek için bir düğmeye dokunun', 'Opens': 'Açılacak',
+  'Text': 'Metin', 'Use the app’s own picture': 'Uygulamanın kendi resmini kullan', 'Keys': 'Tuşlar', 'e.g. Mute mic': 'örn. Mikrofonu kapat',
+  'Sends the key combination to the app in front, e.g. push-to-talk, OBS hotkeys, Discord mute.': 'Tuş kombinasyonunu öndeki uygulamaya gönderir: bas-konuş, OBS kısayolları, Discord sessize alma gibi.',
+  'Media': 'Medya', 'Type a text': 'Metin yaz', 'Text to type, e.g. gg wp': 'Yazılacak metin, örn. gg wp', 'Saved': 'Kaydedildi',
+  'Your own photos and videos': 'Kendi fotoğraf ve videolarınız', 'Keys for apps, shortcuts, text and media': 'Uygulama, kısayol, metin ve medya tuşları',
+  'System volume slider and mute': 'Sistem sesi ve sessize alma', 'A video, live stream or playlist': 'Video, canlı yayın ya da liste',
+  'Watch a Twitch channel': 'Bir Twitch kanalı izleyin', 'Read a channel’s chat': 'Bir kanalın sohbetini okuyun', 'SimHub dashboards for sim racing': 'Simülasyon yarışı için SimHub panelleri',
+  'Sensor Chart': 'Sensör Grafiği', 'Live graph of any sensor': 'Herhangi bir sensörün canlı grafiği', '2 Sensors': '2 Sensör', 'Two big readings side by side': 'Yan yana iki büyük değer',
+  'Sensor List': 'Sensör Listesi', 'Up to 8 sensors in a list': 'Listede 8 sensöre kadar', 'Frames per second of the game in front': 'Öndeki oyunun saniyedeki kare sayısı',
+  'Analog clock, any city': 'Analog saat, istediğiniz şehir', 'Chronograph': 'Kronograf', 'Stopwatch with a dial': 'Kadranlı kronometre', 'Digital stopwatch with laps': 'Turlu dijital kronometre',
+  'Flip a coin to decide': 'Karar vermek için yazı tura', 'AQI and pollutants for your cities': 'Şehirleriniz için hava kalitesi', 'Type into any app on the PC': 'Bilgisayardaki herhangi bir uygulamaya yazın',
+  'Control the mouse from the Edge': 'Fareyi Edge’den kontrol edin', 'Play / Pause': 'Oynat / Duraklat', 'Next track': 'Sonraki parça', 'Previous track': 'Önceki parça',
+  'Mute': 'Sessiz', 'Volume up': 'Sesi aç', 'Volume down': 'Sesi kıs', 'Good': 'İyi', 'Moderate': 'Orta', 'Unhealthy for sensitive groups': 'Hassas gruplar için sağlıksız',
+  'Unhealthy': 'Sağlıksız', 'Very unhealthy': 'Çok sağlıksız', 'Hazardous': 'Tehlikeli', 'CPU load': 'CPU yükü', 'CPU temperature': 'CPU sıcaklığı', 'GPU load': 'GPU yükü',
+  'GPU temperature': 'GPU sıcaklığı', 'GPU power': 'GPU gücü', 'GPU fan': 'GPU fanı', 'GPU clock': 'GPU saat hızı', 'GPU memory clock': 'GPU bellek hızı',
+  'GPU memory': 'GPU belleği', 'RAM': 'RAM', 'RAM used': 'Kullanılan RAM', 'Disk': 'Disk',
 };
 
 // ---------------------------------------------------------------- settings
+const W_ = (type, cfg = {}, size = 'm') => ({ uid: type + '-' + Math.random().toString(36).slice(2, 7), type, size, cfg });
+function DEFAULT_SCREENS() {
+  return [
+    { widgets: [W_('clock'), W_('weather'), W_('system'), W_('media'), W_('launcher')] },
+    { widgets: [W_('sensorlist'), W_('sensorchart', { sensor: 'gpu.load' }), W_('sensor2'), W_('fps'), W_('volume')] },
+    { widgets: [W_('clockface'), W_('chronograph'), W_('coin'), W_('aqi'), W_('calendar')] },
+  ];
+}
 const DEFAULTS = {
   theme: 'obsidian', accent: null, glow: true,
   lang: 'en', clock24: false, showSeconds: true, tempUnit: 'F',
@@ -70,9 +111,8 @@ const DEFAULTS = {
     { city: 'London', tz: 'Europe/London' },
     { city: 'Tokyo', tz: 'Asia/Tokyo' },
   ],
-  // Home screen = ordered widget instances: { uid, type, size: 's'|'m'|'l', cfg }
-  home: ['clock', 'weather', 'system', 'media', 'launcher'].map(type => ({ uid: type, type, size: 'm', cfg: {} })),
-  gameMode: 'auto',
+  // Home screens (swipe between them), each an ordered list of widget instances: { uid, type, size: 's'|'m'|'l', cfg }
+  screens: DEFAULT_SCREENS(),
   dim: { on: true, from: 22, to: 7 },
   saver: { on: false, minutes: 15 },
   pomo: { work: 25, brk: 5 },
@@ -80,6 +120,8 @@ const DEFAULTS = {
   notes: '',
 };
 let S = structuredClone(DEFAULTS);
+let screenIdx = 0;
+const cur = () => S.screens[screenIdx].widgets;
 
 function merge(base, over) {
   if (!over || typeof over !== 'object') return base;
@@ -106,7 +148,13 @@ async function loadSettings() {
   }
   S = merge(structuredClone(DEFAULTS), remote || local || {});
   // v1.0 stored { id, on } toggles; turn them into widget instances.
-  S.home = (S.home || []).filter(h => h.type || h.on).map(h => h.type ? h : { uid: h.id, type: h.id, size: 'm', cfg: {} });
+  // v1.0 stored { id, on } toggles in S.home; v1.1 stored instances in S.home; v1.2 has several screens.
+  if (S.home) {
+    const first = S.home.filter(h => h.type || h.on).map(h => h.type ? h : { uid: h.id, type: h.id, size: 'm', cfg: {} });
+    S.screens = [{ widgets: first }, ...DEFAULT_SCREENS().slice(1)];
+    delete S.home;
+  }
+  if (!Array.isArray(S.screens) || !S.screens.length) S.screens = DEFAULT_SCREENS();
   // URL overrides (not saved): ?theme=aurora&lang=tr&accent=%233ee0c5&widgets=clock,weather,calendar
   if (params.get('theme')) S.theme = params.get('theme');
   if (params.get('lang')) S.lang = params.get('lang');
@@ -117,7 +165,8 @@ async function loadSettings() {
       note: { text: 'Squad night Friday 9 PM\nBring the new headset' },
       web: { url: 'https://embed.windy.com/embed2.html?lat=35.2&lon=-80.8&zoom=5&overlay=wind', zoom: .8 },
     };
-    S.home = params.get('widgets').split(',').map(type => ({ uid: type, type, size: 'm', cfg: DEMO ? structuredClone(demoCfg[type] || {}) : {} }));
+    // 'type^' = stacked under the previous widget, 'type:l' = size; e.g. widgets=clock,weather^,system:l
+    S.screens = [{ widgets: params.get('widgets').split(',').map((t, i) => { const [type, size = 'm'] = t.replace('^', '').split(':'); return { uid: type + i, type, size, stack: t.includes('^'), cfg: DEMO ? structuredClone(demoCfg[type] || {}) : {} }; }) }];
   }
   if (DEMO) {
     S.dim.on = false;
@@ -147,13 +196,14 @@ function demoStats() {
     cpu: { load: cpu, cores: Array.from({ length: 16 }, (_, i) => Math.max(4, Math.round(cpu + w(22, 2 + i % 5, i)))), model: 'AMD Ryzen 7 7800X3D 8-Core Processor', temp: 61 + w(4, 4) },
     ram: { used: 19.4 * 2 ** 30 + w(2 ** 29, 6), total: 32 * 2 ** 30 },
     uptime: 3 * 86400 + 5 * 3600 + 42 * 60,
-    gpu: { name: 'NVIDIA GeForce RTX 4080 SUPER', load: 58 + w(18, 2.5) + w(8, 0.9, 2), temp: 64 + w(3, 5), vramUsed: 9.6 * 2 ** 30, vramTotal: 16 * 2 ** 30, power: 238 + w(30, 2) },
+    gpu: { name: 'NVIDIA GeForce RTX 4080 SUPER', load: 58 + w(18, 2.5) + w(8, 0.9, 2), temp: 64 + w(3, 5), vramUsed: 9.6 * 2 ** 30, vramTotal: 16 * 2 ** 30, power: 238 + w(30, 2), fan: 48 + w(4, 6), clock: 2610 + w(40, 2), memClock: 11200 },
     net: { down: 4.2e6 + w(2.6e6, 2.2) + w(1e6, 0.7, 1), up: 6.5e5 + w(3e5, 1.8, 2) },
     disks: [
       { name: 'C:', label: 'System', size: 2e12, free: 0.74e12 }, { name: 'D:', label: 'Games', size: 4e12, free: 1.1e12 },
       { name: 'E:', label: 'Media', size: 2e12, free: 1.42e12 },
     ],
     media: { title: 'Midnight Drive', artist: 'Neon Avenue', album: 'City Lights', app: 'Spotify.exe', status: 'Playing', position: 94, duration: 213, updated: Date.now() },
+    audio: { level: 64, muted: false }, fps: { fps: Math.round(158 + w(14, 1.5)), app: 'TslGame' },
   };
 }
 
@@ -270,8 +320,8 @@ async function pollStats() {
     push('up', stats.net?.up ?? 0);
   } catch { stats = null; }
   $('#railStatus').classList.toggle('on', !!stats);
-  updateGameBtn();
-  updateWidgets('system'); updateWidgets('media');
+  recordSensors();
+  ['system', 'media', 'volume', 'sensorchart', 'sensor2', 'sensorlist', 'fps'].forEach(updateWidgets);
   if (currentPage === 'system') renderSystemPage(false);
   if (currentPage === 'media') updateMediaPage();
 }
@@ -550,12 +600,12 @@ const W = {
     update() {},
   },
   photo: {
-    name: 'Photos', desc: 'Your own photo slideshow', ico: 'image', basis: 560, edit: editPhoto, isNew: true,
+    name: 'Photos & videos', desc: 'Your own photos and videos', ico: 'image', basis: 560, edit: editPhoto, isNew: true,
     html: (inst) => (inst.cfg.srcs || []).length
-      ? `<div class="slides" style="--fit:${inst.cfg.fit === 'contain' ? 'contain' : 'cover'}">${inst.cfg.srcs.map(s => `<img src="${esc(s)}" alt="" draggable="false">`).join('')}</div>`
+      ? `<div class="slides" style="--fit:${inst.cfg.fit === 'contain' ? 'contain' : 'cover'}">${inst.cfg.srcs.map(s => /\.(mp4|webm)$/i.test(s) ? `<video src="${esc(s)}" autoplay muted loop playsinline></video>` : `<img src="${esc(s)}" alt="" draggable="false">`).join('')}</div>`
       : `<div class="card-label">${icon('image')} ${T('Photos')}</div><div class="empty-note">${icon('gear')}<span>${T('Tap the gear to add photos')}</span></div>`,
     update(el, inst) {
-      const imgs = $$('.slides img', el); if (!imgs.length) return;
+      const imgs = $$('.slides > *', el); if (!imgs.length) return;
       const i = Math.floor(Date.now() / 1000 / (inst.cfg.every || 10)) % imgs.length;
       imgs.forEach((im, k) => im.classList.toggle('on', k === i));
     },
@@ -623,28 +673,542 @@ const W = {
   },
 };
 
-// ---------------------------------------------------------------- home screen + edit mode
-const SIZE = { s: .72, m: 1, l: 1.45 };
-let editing = false;
-const instOf = (uid) => S.home.find(h => h.uid === uid);
+// ---------------------------------------------------------------- sensors (shared by the sensor widgets)
+// Built-in readings from the PC, plus every sensor LibreHardwareMonitor reports when it's running.
+const sensorHist = {};
+function sensorList() {
+  const s = stats; if (!s) return [];
+  const gb = (b) => b / 2 ** 30;
+  const out = [
+    ['cpu.load', 'CPU load', '%', s.cpu?.load], ['cpu.temp', 'CPU temperature', '°', s.cpu?.temp, 'temp'],
+    ['gpu.load', 'GPU load', '%', s.gpu?.load], ['gpu.temp', 'GPU temperature', '°', s.gpu?.temp, 'temp'],
+    ['gpu.power', 'GPU power', 'W', s.gpu?.power], ['gpu.fan', 'GPU fan', '%', s.gpu?.fan],
+    ['gpu.clock', 'GPU clock', 'MHz', s.gpu?.clock], ['gpu.memclock', 'GPU memory clock', 'MHz', s.gpu?.memClock],
+    ['gpu.vram', 'GPU memory', '%', s.gpu?.vramTotal ? s.gpu.vramUsed / s.gpu.vramTotal * 100 : null],
+    ['ram.load', 'RAM', '%', s.ram ? s.ram.used / s.ram.total * 100 : null], ['ram.used', 'RAM used', 'GB', s.ram ? gb(s.ram.used) : null],
+    ['net.down', 'Download', 'Mbps', s.net ? s.net.down * 8 / 1e6 : null], ['net.up', 'Upload', 'Mbps', s.net ? s.net.up * 8 / 1e6 : null],
+    ['fps', 'FPS', 'fps', s.fps && s.fps.fps >= 0 ? s.fps.fps : null],
+    ['volume', 'Volume', '%', s.audio?.level],
+    ...(s.disks || []).map(d => [`disk.${d.name}`, `Disk ${d.name} used`, '%', (d.size - d.free) / d.size * 100]),
+  ].map(([id, name, unit, value, kind]) => ({ id, name: T(name), unit, value, kind, group: 'PC' }));
+  for (const l of s.lhm || []) out.push({ id: 'lhm:' + l.id, name: `${l.name} · ${l.hw}`, unit: l.unit, value: l.value, kind: l.type === 'Temperature' ? 'temp' : '', group: 'LibreHardwareMonitor' });
+  return out;
+}
+const sensorById = (id) => sensorList().find(x => x.id === id);
+function sensorFmt(x) {
+  if (!x || x.value == null || isNaN(x.value)) return { num: '—', unit: '' };
+  let v = x.value, unit = x.unit;
+  if (x.kind === 'temp') { if (S.tempUnit === 'F') v = v * 9 / 5 + 32; unit = '°' + S.tempUnit; }
+  return { num: Math.abs(v) < 10 && v % 1 ? v.toFixed(1) : Math.round(v).toLocaleString(LOC()), unit };
+}
+function recordSensors() {
+  for (const x of sensorList()) { const h = sensorHist[x.id] ||= []; h.push(x.value); if (h.length > HIST_N) h.shift(); }
+}
+const sensorSelect = (key, curId) => {
+  const list = sensorList(), groups = [...new Set(list.map(x => x.group))];
+  return `<select class="field" data-sensor="${key}">${groups.map(g => `<optgroup label="${esc(g)}">${list.filter(x => x.group === g).map(x =>
+    `<option value="${esc(x.id)}" ${x.id === curId ? 'selected' : ''}>${esc(x.name)}</option>`).join('')}</optgroup>`).join('')}
+    ${curId && !list.find(x => x.id === curId) ? `<option value="${esc(curId)}" selected>${esc(curId)}</option>` : ''}</select>`;
+};
+const sensorHint = () => `<p class="hint">${T('More sensors (fans, CPU temperature, voltages): install LibreHardwareMonitor and turn on Options → Remote Web Server.')}</p>`;
 
-function renderHome() {
+// Per-widget runtime state (stopwatches, coin, touchpad) that doesn't need saving.
+const rt = {};
+const RT = (uid, init) => rt[uid] ||= init();
+const post = (url, body) => fetch(API + url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+  .then(r => { if (!r.ok) throw r.status; return r; });
+
+// Launcher / Stream Deck actions
+function runAction(item, btn) {
+  if (btn) { btn.classList.remove('fired'); void btn.offsetWidth; btn.classList.add('fired'); }
+  const a = item.action || 'launch';
+  const fail = (s) => toast(s === 400 ? `${T('Could not open')} ${item.name}` : T('PC link offline'));
+  if (a === 'launch') post('/api/launch', { target: item.target }).then(() => toast(`${T('Opening')} ${item.name}`)).catch(fail);
+  else if (a === 'keys') post('/api/keys', { vks: item.vks }).catch(fail);
+  else if (a === 'text') post('/api/text', { text: item.text }).catch(fail);
+  else if (a === 'media') media(item.cmd);
+  else if (a === 'screen') { go('home'); goScreen(Number(item.screen) || 0); }
+}
+document.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-item]'); if (!b || editing) return;
+  const [uid, i] = b.dataset.item.split(':'); const inst = instOf(uid);
+  if (inst) runAction(launcherItems(inst)[+i], b);
+});
+const itemButton = (inst, l, i, cls = '') => /steamstatic/.test(l.img || '')
+  ? `<button class="launch game ${cls}" style="--bg:url('${esc(l.img)}')" data-item="${esc(inst.uid)}:${i}"><span class="ellipsis">${esc(l.name)}</span></button>`
+  : `<button class="launch ${cls}" style="--c:${esc(l.color || 'var(--accent)')}" data-item="${esc(inst.uid)}:${i}">${launchIcon(l)}<span class="ellipsis">${esc(l.name)}</span></button>`;
+
+// Twitch embeds must name the page's own host as "parent".
+const twitchParent = () => location.hostname || 'localhost';
+function youtubeEmbed(url, mute) {
+  const u = String(url || '');
+  const id = /(?:v=|youtu\.be\/|shorts\/|live\/|embed\/)([\w-]{11})/.exec(u)?.[1];
+  const list = /[?&]list=([\w-]+)/.exec(u)?.[1];
+  if (!id && !list) return null;
+  const q = `autoplay=1&mute=${mute ? 1 : 0}&playsinline=1&rel=0&modestbranding=1`;
+  return id ? `https://www.youtube-nocookie.com/embed/${id}?${q}${list ? '&list=' + list : '&loop=1&playlist=' + id}` : `https://www.youtube-nocookie.com/embed/videoseries?list=${list}&${q}`;
+}
+const frame = (src, z = 1) => `<div class="frame-wrap"><iframe src="${esc(src)}" style="--z:${z}" referrerpolicy="strict-origin-when-cross-origin"
+  allow="autoplay; encrypted-media; picture-in-picture; fullscreen" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-presentation"></iframe></div>`;
+const emptyCard = (ico, title, msg) => `<div class="card-label">${icon(ico)} ${title}</div><div class="empty-note">${icon('gear')}<span>${msg}</span></div>`;
+
+// Analog dial used by the clock face and chronograph
+function dial(hands, { ticks = 60, numbers = false, sub = '' } = {}) {
+  let t = '';
+  for (let i = 0; i < ticks; i++) {
+    const a = i / ticks * Math.PI * 2, big = i % (ticks / 12) === 0, r1 = big ? 40 : 43;
+    t += `<line x1="${50 + Math.sin(a) * r1}" y1="${50 - Math.cos(a) * r1}" x2="${50 + Math.sin(a) * 46}" y2="${50 - Math.cos(a) * 46}" stroke="${big ? 'var(--text)' : 'var(--text-3)'}" stroke-width="${big ? 1.6 : .6}"/>`;
+  }
+  if (numbers) for (let i = 1; i <= 12; i++) { const a = i / 12 * Math.PI * 2; t += `<text x="${50 + Math.sin(a) * 33}" y="${50 - Math.cos(a) * 33 + 3.2}" text-anchor="middle" font-size="8.5" fill="var(--text-2)" stroke="none" font-family="var(--font-display)">${i}</text>`; }
+  return `<svg viewBox="0 0 100 100" class="dial"><circle cx="50" cy="50" r="48" fill="var(--card-hi)" stroke="var(--stroke)" stroke-width="1"/>${t}${sub}
+    ${hands.map(([deg, len, w, c, tail = 0]) => `<line x1="${50 - Math.sin(deg * Math.PI / 180) * tail}" y1="${50 + Math.cos(deg * Math.PI / 180) * tail}" x2="${50 + Math.sin(deg * Math.PI / 180) * len}" y2="${50 - Math.cos(deg * Math.PI / 180) * len}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"/>`).join('')}
+    <circle cx="50" cy="50" r="2.6" fill="var(--accent)" stroke="none"/></svg>`;
+}
+const fmtSw = (ms) => { const m = Math.floor(ms / 6e4), s = Math.floor(ms % 6e4 / 1e3), c = Math.floor(ms % 1e3 / 10); return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}.${String(c).padStart(2, '0')}`; };
+const swState = (uid) => RT(uid, () => ({ running: false, start: 0, acc: 0, laps: [] }));
+const swNow = (st) => st.acc + (st.running ? Date.now() - st.start : 0);
+function swCmd(uid, cmd) {
+  const st = swState(uid);
+  if (cmd === 'toggle') { if (st.running) { st.acc = swNow(st); st.running = false; } else { st.start = Date.now(); st.running = true; } }
+  else if (cmd === 'lap') { if (st.running) st.laps.unshift(swNow(st)); else { st.acc = 0; st.laps = []; } }
+}
+document.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-sw]'); if (!b || editing) return;
+  const card = b.closest('[data-uid]'); swCmd(card.dataset.uid, b.dataset.sw);
+  W[card.dataset.w].update(card, instOf(card.dataset.uid));
+});
+
+// Air quality (Open-Meteo, no key)
+let aqi = null;
+async function loadAqi() {
+  const q = (l) => fetch(`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${l.lat}&longitude=${l.lon}&current=us_aqi,pm2_5,pm10,ozone,nitrogen_dioxide&timezone=auto`).then(r => r.json()).catch(() => null);
+  const [a, b] = await Promise.all([q(S.location), S.location2 ? q(S.location2) : null]);
+  aqi = { a: a?.current, b: b?.current };
+  updateWidgets('aqi');
+}
+const AQI_LEVELS = [[50, 'Good', '#3ccf6e'], [100, 'Moderate', '#f5c400'], [150, 'Unhealthy for sensitive groups', '#ff8a2a'], [200, 'Unhealthy', '#ff4d4d'], [300, 'Very unhealthy', '#b04dff'], [1e9, 'Hazardous', '#8a1538']];
+const aqiLevel = (v) => AQI_LEVELS.find(([max]) => v <= max);
+
+// Virtual keyboard
+const KB_ROWS = [
+  [['Esc', 27, 1.2], '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', ['⌫', 8, 1.8]],
+  [['Tab', 9, 1.5], 'q', 'w', 'e', 'r', 't', 'y', 'u', 'ı', 'o', 'p', 'ğ', 'ü', ['Del', 46, 1.5]],
+  [['Caps', 'caps', 1.8], 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'ş', 'i', ['Enter', 13, 2.2]],
+  [['Shift', 'shift', 2.4], 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'ö', 'ç', '.', ',', ['↑', 38, 1.4]],
+  [['Ctrl', 'ctrl', 1.5], ['Win', 'win', 1.3], ['Alt', 'alt', 1.3], [' ', 32, 6.6], ['AltGr', 'altgr', 1.3], ['←', 37, 1], ['↓', 40, 1], ['→', 39, 1]],
+];
+const KB_EN = { 'ı': 'i', 'ğ': '[', 'ü': ']', 'ş': ';', 'i': "'", 'ö': ',', 'ç': '.', '.': '/' };
+const KB_SHIFT = { '1': '!', '2': "'", '3': '^', '4': '+', '5': '%', '6': '&', '7': '/', '8': '(', '9': ')', '0': '=', '-': '?', '=': '_', '.': ':', ',': ';', 'i': 'İ', 'ı': 'I' };
+const KB_SHIFT_EN = { '1': '!', '2': '@', '3': '#', '4': '$', '5': '%', '6': '^', '7': '&', '8': '*', '9': '(', '0': ')', '-': '_', '=': '+', '[': '{', ']': '}', ';': ':', "'": '"', ',': '<', '.': '>', '/': '?' };
+const MOD_VK = { ctrl: 0x11, alt: 0x12, win: 0x5B, shift: 0x10, altgr: 0xA5 };
+function kbChar(k, st, layout) {
+  let ch = layout === 'en' ? (KB_EN[k] ?? k) : k;
+  const upper = st.shift !== st.caps;
+  if (st.shift && (layout === 'en' ? KB_SHIFT_EN : KB_SHIFT)[ch]) return (layout === 'en' ? KB_SHIFT_EN : KB_SHIFT)[ch];
+  return upper ? ch.toLocaleUpperCase(layout === 'en' ? 'en' : 'tr') : ch;
+}
+function kbVk(ch) { const c = ch.toUpperCase(); return /^[A-Z0-9]$/.test(c) ? c.charCodeAt(0) : null; }
+
+// Touchpad: relative mouse movement, tap = click, two-finger tap = right click, two-finger drag = scroll.
+function bindTouchpad(pad, inst) {
+  const pts = new Map(); let moved = 0, downAt = 0, maxPts = 0, acc = { dx: 0, dy: 0, sy: 0, sx: 0 }, raf = 0;
+  const speed = () => inst.cfg.speed || 2.2;
+  const flush = () => {
+    raf = 0;
+    if (acc.dx || acc.dy) { post('/api/mouse', { op: 'move', dx: acc.dx, dy: acc.dy }).catch(() => {}); acc.dx = acc.dy = 0; }
+    if (Math.abs(acc.sy) >= 1 || Math.abs(acc.sx) >= 1) { post('/api/mouse', { op: 'scroll', dy: Math.round(acc.sy), dx: Math.round(acc.sx) }).catch(() => {}); acc.sy = acc.sx = 0; }
+  };
+  const queue = () => { raf ||= requestAnimationFrame(flush); };
+  pad.addEventListener('pointerdown', (e) => {
+    if (editing) return;
+    pad.setPointerCapture(e.pointerId); pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pts.size === 1) { moved = 0; downAt = Date.now(); maxPts = 1; } else maxPts = Math.max(maxPts, pts.size);
+    pad.classList.add('touching');
+  });
+  pad.addEventListener('pointermove', (e) => {
+    const p = pts.get(e.pointerId); if (!p) return;
+    const dx = e.clientX - p.x, dy = e.clientY - p.y; p.x = e.clientX; p.y = e.clientY;
+    const scale = 2560 / stage.getBoundingClientRect().width;   // stage may be scaled down
+    moved += Math.abs(dx) + Math.abs(dy);
+    if (pts.size >= 2) { acc.sy -= dy * scale * 3; acc.sx += dx * scale * 3; }
+    else { acc.dx += Math.round(dx * scale * speed()); acc.dy += Math.round(dy * scale * speed()); }
+    queue();
+  });
+  const end = (e) => {
+    if (!pts.delete(e.pointerId) || pts.size) return;
+    pad.classList.remove('touching');
+    if (moved < 12 && Date.now() - downAt < 280) post('/api/mouse', { op: 'click', button: maxPts >= 2 ? 'right' : 'left' }).catch(() => {});
+  };
+  pad.addEventListener('pointerup', end); pad.addEventListener('pointercancel', end);
+}
+
+Object.assign(W, {
+  launcher: { ...W.launcher,
+    html: (inst) => {
+      const items = launcherItems(inst), n = items.length;
+      const cols = n <= 1 ? 1 : n <= 6 ? 2 : n <= 12 ? 3 : 4;
+      return `<div class="card-label">${icon('activity')} ${esc(inst.cfg.title || T('Launch'))}</div>
+        <div class="launch-grid" style="grid-template-columns:repeat(${cols},1fr)">${items.map((l, i) => itemButton(inst, l, i, n > 6 ? 'small' : '')).join('')
+        || `<div class="empty-note">${icon('gear')}<span>${T('Tap the gear to add buttons')}</span></div>`}</div>`;
+    },
+  },
+  deck: {
+    name: 'Stream Deck', desc: 'Keys for apps, shortcuts, text and media', ico: 'grid', basis: 640, edit: (i) => editLauncher(i, true), isNew: true,
+    basisOf: (inst) => { const n = Math.max(launcherItems(inst).length, 1); return Math.min(1200, 180 + 150 * Math.ceil(n / 3)); },
+    html: (inst) => {
+      const items = launcherItems(inst), rows = items.length > 8 ? 3 : 2, cols = Math.max(1, Math.ceil(items.length / rows));
+      return items.length ? `<div class="deck" style="grid-template-columns:repeat(${cols},1fr);grid-template-rows:repeat(${rows},1fr)">${items.map((l, i) => itemButton(inst, l, i, 'key')).join('')}</div>`
+        : emptyCard('grid', 'Stream Deck', T('Tap the gear to add buttons'));
+    },
+    update() {},
+  },
+  volume: {
+    name: 'Volume', desc: 'System volume slider and mute', ico: 'volup', basis: 420, isNew: true,
+    html: () => `<div class="card-label">${icon('volup')} ${T('Volume')}</div>
+      <div class="vol-num num" data-vn>—</div>
+      <div class="vol-track" data-vtrack data-noswipe><i data-vfill></i><b data-vknob></b></div>
+      <div class="vol-btns"><button class="ctl" data-vol="-10">${icon('voldown')}</button><button class="ctl" data-vol="mute">${icon('mute')}</button><button class="ctl" data-vol="10">${icon('volup')}</button></div>`,
+    update(el) {
+      const st = RT('vol', () => ({ until: 0, level: null }));
+      const a = stats?.audio; if (!a) { $('[data-vn]', el).textContent = '—'; return; }
+      if (Date.now() < st.until) return;   // the user is dragging
+      drawVol(el, a.level, a.muted);
+    },
+  },
+  youtube: {
+    name: 'YouTube', desc: 'A video, live stream or playlist', ico: 'play', basis: 760, edit: editYouTube, isNew: true,
+    html: (inst) => { const src = youtubeEmbed(inst.cfg.url, inst.cfg.mute !== false); return src ? frame(src) : emptyCard('play', 'YouTube', T('Tap the gear to pick a video')); },
+    update() {},
+  },
+  twitchlive: {
+    name: 'Twitch Live', desc: 'Watch a Twitch channel', ico: 'twitch', basis: 760, edit: (i) => editTwitch(i, 'Twitch Live'), isNew: true,
+    html: (inst) => inst.cfg.channel ? frame(`https://player.twitch.tv/?channel=${encodeURIComponent(inst.cfg.channel)}&parent=${twitchParent()}&muted=${inst.cfg.mute !== false}&autoplay=true`)
+      : emptyCard('twitch', 'Twitch Live', T('Tap the gear to pick a channel')),
+    update() {},
+  },
+  twitchchat: {
+    name: 'Twitch Chat', desc: 'Read a channel’s chat', ico: 'twitch', basis: 460, edit: (i) => editTwitch(i, 'Twitch Chat'), isNew: true,
+    html: (inst) => inst.cfg.channel ? frame(`https://www.twitch.tv/embed/${encodeURIComponent(inst.cfg.channel)}/chat?parent=${twitchParent()}${S.theme === 'paper' ? '' : '&darkpopout'}`)
+      : emptyCard('twitch', 'Twitch Chat', T('Tap the gear to pick a channel')),
+    update() {},
+  },
+  simhub: {
+    name: 'SimHub', desc: 'SimHub dashboards for sim racing', ico: 'gauge', basis: 900, edit: editSimhub, isNew: true,
+    html: (inst) => frame(inst.cfg.url || 'http://localhost:8888/'),
+    update() {},
+  },
+  sensorchart: {
+    name: 'Sensor Chart', desc: 'Live graph of any sensor', ico: 'activity', basis: 620, edit: editSensors, isNew: true,
+    html: (inst) => `<div class="card-label"><span class="ellipsis" data-sn></span><span class="right" data-smm></span></div>
+      <div class="big-metric"><b data-sv>—</b><small data-su></small></div><canvas class="spark" data-sc></canvas>`,
+    update(el, inst) {
+      const id = inst.cfg.sensor || 'cpu.load', x = sensorById(id), f = sensorFmt(x), h = sensorHist[id] || [];
+      $('[data-sn]', el).textContent = x?.name || id; $('[data-sv]', el).textContent = f.num; $('[data-su]', el).textContent = f.unit;
+      const vals = h.filter(v => v != null);
+      $('[data-smm]', el).textContent = vals.length && x ? `${sensorFmt({ ...x, value: Math.min(...vals) }).num} – ${sensorFmt({ ...x, value: Math.max(...vals) }).num}` : '';
+      spark($('[data-sc]', el), h.map(v => v ?? 0), { max: x?.unit === '%' ? 100 : null, color: inst.cfg.color });
+    },
+  },
+  sensor2: {
+    name: '2 Sensors', desc: 'Two big readings side by side', ico: 'gauge', basis: 520, edit: editSensors, isNew: true,
+    html: (inst) => `<div class="two">${[0, 1].map(k => `<div class="two-cell"><div class="two-n ellipsis" data-n${k}></div><div class="two-v num"><b data-v${k}>—</b><small data-u${k}></small></div><div class="two-bar"><i data-b${k}></i></div></div>`).join('')}</div>`,
+    update(el, inst) {
+      const ids = inst.cfg.sensors || ['cpu.load', 'gpu.temp'];
+      ids.slice(0, 2).forEach((id, k) => {
+        const x = sensorById(id), f = sensorFmt(x);
+        $(`[data-n${k}]`, el).textContent = x?.name || id; $(`[data-v${k}]`, el).textContent = f.num; $(`[data-u${k}]`, el).textContent = f.unit;
+        const pct = x ? (x.unit === '%' ? x.value : x.kind === 'temp' ? x.value : null) : null;
+        $(`[data-b${k}]`, el).style.width = pct == null ? '0' : clamp(pct, 0, 100) + '%';
+      });
+    },
+  },
+  sensorlist: {
+    name: 'Sensor List', desc: 'Up to 8 sensors in a list', ico: 'list', basis: 540, edit: editSensors, isNew: true,
+    html: () => `<div class="card-label">${icon('list')} ${T('Sensors')}</div><div class="slist" data-sl></div>`,
+    update(el, inst) {
+      const ids = inst.cfg.sensors || ['cpu.load', 'cpu.temp', 'gpu.load', 'gpu.temp', 'gpu.power', 'ram.load', 'net.down'];
+      $('[data-sl]', el).innerHTML = ids.slice(0, 8).map(id => {
+        const x = sensorById(id), f = sensorFmt(x);
+        return `<div class="srow"><span class="ellipsis">${esc(x?.name || id)}</span><b class="num">${f.num}<small>${esc(f.unit)}</small></b></div>`;
+      }).join('');
+    },
+  },
+  fps: {
+    name: 'FPS', desc: 'Frames per second of the game in front', ico: 'gauge', basis: 420, isNew: true,
+    html: () => `<div class="card-label">${icon('gauge')} FPS <span class="right ellipsis" data-fa></span></div><div class="fps-num num" data-fv>—</div><div class="hint" data-fh></div><canvas class="spark" data-fc></canvas>`,
+    update(el) {
+      const f = stats?.fps;
+      const v = f && f.fps >= 0 ? Math.round(f.fps) : null;
+      $('[data-fv]', el).textContent = v ?? '—';
+      $('[data-fa]', el).textContent = f?.app || '';
+      $('[data-fh]', el).textContent = !stats ? T('PC link offline') : f?.fps === -2 ? T('Install MSI Afterburner (RivaTuner) to see FPS.') : v == null ? T('No game running') : '';
+      spark($('[data-fc]', el), (sensorHist.fps || []).map(x => x ?? 0));
+    },
+  },
+  clockface: {
+    name: 'Clock Face', desc: 'Analog clock, any city', ico: 'focus', basis: 460, edit: editClockface, isNew: true,
+    html: (inst) => `<div class="card-label">${icon('focus')} <span class="ellipsis" data-cc></span></div><div class="dial-wrap" data-dial></div><div class="dial-sub num" data-cd></div>`,
+    update(el, inst) {
+      const tz = inst.cfg.tz || undefined, d = new Date(), h = tzHour(d, tz || Intl.DateTimeFormat().resolvedOptions().timeZone), s = d.getSeconds();
+      $('[data-cc]', el).textContent = inst.cfg.city || T('Local time');
+      $('[data-dial]', el).innerHTML = dial([[(h % 12) * 30, 24, 3.2, 'var(--text)'], [(h % 1) * 360 + s / 10, 36, 2, 'var(--text)'], ...(inst.cfg.seconds === false ? [] : [[s * 6, 40, .9, 'var(--accent)', 8]])], { numbers: inst.cfg.style !== 'minimal', ticks: inst.cfg.style === 'minimal' ? 12 : 60 });
+      const p = fmtTime(d, tz); $('[data-cd]', el).textContent = `${p.hour}:${p.minute}${S.clock24 ? '' : ' ' + p.dayPeriod}`;
+    },
+  },
+  chronograph: {
+    name: 'Chronograph', desc: 'Stopwatch with a dial', ico: 'focus', basis: 520, isNew: true,
+    html: () => `<div class="chrono"><div class="dial-wrap" data-dial></div><div class="chrono-side"><div class="sw-time num" data-st></div>
+      <div class="sw-laps" data-laps></div><div class="sw-btns"><button class="btn-xl" data-sw="toggle" data-stb></button><button class="btn-xl ghost" data-sw="lap" data-slb></button></div></div></div>`,
+    update(el, inst) {
+      const st = swState(inst.uid), ms = swNow(st);
+      $('[data-dial]', el).innerHTML = dial([[(ms / 1000 % 60) * 6, 42, 1.1, 'var(--accent)', 8]], {
+        sub: `<circle cx="50" cy="68" r="10" fill="none" stroke="var(--stroke)"/><line x1="50" y1="68" x2="${50 + Math.sin((ms / 6e4 % 30) / 30 * 2 * Math.PI) * 8}" y2="${68 - Math.cos((ms / 6e4 % 30) / 30 * 2 * Math.PI) * 8}" stroke="var(--text)" stroke-width="1.2"/>` });
+      swCommon(el, st, ms);
+    },
+  },
+  stopwatch: {
+    name: 'Stopwatch', desc: 'Digital stopwatch with laps', ico: 'hourglass', basis: 460, isNew: true,
+    html: () => `<div class="card-label">${icon('hourglass')} ${T('Stopwatch')}</div><div class="sw-time big num" data-st></div><div class="sw-laps" data-laps></div>
+      <div class="sw-btns"><button class="btn-xl" data-sw="toggle" data-stb></button><button class="btn-xl ghost" data-sw="lap" data-slb></button></div>`,
+    update(el, inst) { const st = swState(inst.uid); swCommon(el, st, swNow(st)); },
+  },
+  coin: {
+    name: 'Decision Coin', desc: 'Flip a coin to decide', ico: 'coin', basis: 420, edit: editCoin, isNew: true,
+    html: (inst) => { const [a, b] = coinLabels(inst); return `<div class="card-label">${icon('coin')} ${T('Decision Coin')}</div>
+      <button class="coin-btn" data-coin><div class="coin" data-coinface><div class="face front">${esc(a)}</div><div class="face back">${esc(b)}</div></div></button>
+      <div class="coin-res" data-cres>${T('Tap to flip')}</div>`; },
+    update() {},
+  },
+  aqi: {
+    name: 'Air Quality', desc: 'AQI and pollutants for your cities', ico: 'wind', basis: 480, isNew: true,
+    html: () => `<div class="card-label">${icon('wind')} ${T('Air Quality')} <span class="right" data-al></span></div>
+      <div class="aqi-main"><b class="num" data-av>—</b><div><div class="aqi-lv" data-alv></div><div class="faint">US AQI</div></div></div>
+      <div class="aqi-pol" data-ap></div><div class="second" data-a2></div>`,
+    update(el) {
+      $('[data-al]', el).textContent = S.location.name;
+      const a = aqi?.a; if (!a) return;
+      const [, lv, col] = aqiLevel(a.us_aqi);
+      $('[data-av]', el).textContent = Math.round(a.us_aqi); $('[data-av]', el).style.color = col;
+      $('[data-alv]', el).textContent = T(lv); $('[data-alv]', el).style.color = col;
+      $('[data-ap]', el).innerHTML = [['PM2.5', a.pm2_5], ['PM10', a.pm10], ['O₃', a.ozone], ['NO₂', a.nitrogen_dioxide]].map(([n, v]) => `<div><small>${n}</small><b class="num">${v == null ? '—' : Math.round(v)}</b></div>`).join('');
+      const b = aqi?.b, w2 = $('[data-a2]', el);
+      if (b && S.location2) { const [, l2, c2] = aqiLevel(b.us_aqi); w2.style.display = ''; w2.innerHTML = `<b>${esc(S.location2.name)}</b><span class="grow faint">${T(l2)}</span><span class="t2 num" style="color:${c2}">${Math.round(b.us_aqi)}</span>`; }
+      else w2.style.display = 'none';
+    },
+  },
+  keyboard: {
+    name: 'Virtual Keyboard', desc: 'Type into any app on the PC', ico: 'keyboard', basis: 1500, edit: editKeyboard, isNew: true,
+    html: (inst) => `<div class="kb ${inst.cfg.layout === 'en' ? 'en' : 'tr'}" data-kb data-noswipe>${KB_ROWS.map(r => `<div class="kb-row">${r.map(k => {
+      const [label, code, w] = Array.isArray(k) ? k : [k, null, 1];
+      return `<button class="kk ${typeof code === 'string' && (MOD_VK[code] || code === 'caps') ? 'mod' : ''}" style="flex:${w}" data-k="${esc(code ?? label)}" data-kl="${esc(label)}"${code == null ? ' data-ch' : ''}>${esc(label)}</button>`;
+    }).join('')}</div>`).join('')}</div>`,
+    update(el, inst) {
+      const st = RT(inst.uid, () => ({ shift: false, caps: false, ctrl: false, alt: false, win: false, altgr: false }));
+      const layout = inst.cfg.layout === 'en' ? 'en' : 'tr';
+      $$('.kk', el).forEach(b => {
+        const k = b.dataset.k;
+        if (MOD_VK[k] || k === 'caps') b.classList.toggle('on', !!st[k]);
+        else if ('ch' in b.dataset) b.textContent = kbChar(k, st, layout);
+      });
+    },
+  },
+  touchpad: {
+    name: 'Virtual Touchpad', desc: 'Control the mouse from the Edge', ico: 'mouse', basis: 760, edit: editTouchpad, isNew: true,
+    html: () => `<div class="pad" data-pad data-noswipe><span>${T('Touchpad')}</span><small>${T('1 finger: move · tap: click · 2 fingers: scroll / right click')}</small></div>
+      <div class="pad-btns" data-noswipe><button data-pb="left">${T('Left click')}</button><button data-pb="right">${T('Right click')}</button></div>`,
+    update() {},
+  },
+});
+
+function drawVol(el, level, muted) {
+  $('[data-vn]', el).innerHTML = muted ? `${icon('mute')}` : `${Math.round(level)}<small>%</small>`;
+  $('[data-vfill]', el).style.width = level + '%'; $('[data-vknob]', el).style.left = level + '%';
+  el.classList.toggle('muted', !!muted);
+}
+function swCommon(el, st, ms) {
+  $('[data-st]', el).textContent = fmtSw(ms);
+  $('[data-stb]', el).innerHTML = st.running ? `${icon('pause')} ${T('Stop')}` : `${icon('play')} ${T(ms ? 'Resume' : 'Start')}`;
+  $('[data-slb]', el).innerHTML = st.running ? `${icon('plus')} ${T('Lap')}` : `${icon('reset')} ${T('Reset')}`;
+  const laps = $('[data-laps]', el), key = st.laps.length + ':' + st.laps[0];
+  if (laps.dataset.k !== key) { laps.dataset.k = key; laps.innerHTML = st.laps.slice(0, 4).map((l, i) => `<div><span>${T('Lap')} ${st.laps.length - i}</span><b class="num">${fmtSw(l)}</b></div>`).join(''); }
+}
+const coinLabels = (inst) => inst.cfg.labels === 'yesno' ? [T('Yes'), T('No')] : inst.cfg.labels === 'custom' ? [inst.cfg.a || 'A', inst.cfg.b || 'B'] : [T('Heads'), T('Tails')];
+
+// Home-row interactions for the new widgets
+$('#homeRow').addEventListener('click', (e) => {
+  if (editing) return;
+  let b;
+  if ((b = e.target.closest('[data-coin]'))) {
+    const card = b.closest('[data-uid]'), inst = instOf(card.dataset.uid), st = RT(inst.uid, () => ({ turns: 0 }));
+    const heads = Math.random() < .5; st.turns += 4 + (heads ? 0 : 1) + (st.turns % 2 && heads ? 1 : 0) + (st.turns % 2 === 0 && !heads ? 0 : 0);
+    if ((st.turns % 2 === 0) !== heads) st.turns++;
+    $('[data-coinface]', card).style.transform = `rotateY(${st.turns * 180}deg)`;
+    const [a, bb] = coinLabels(inst); $('[data-cres]', card).textContent = '…';
+    setTimeout(() => { $('[data-cres]', card).textContent = heads ? a : bb; }, 900);
+  } else if ((b = e.target.closest('[data-vol]'))) {
+    const v = b.dataset.vol;
+    if (v === 'mute') post('/api/volume', { mute: true }).catch(() => toast(T('PC link offline')));
+    else post('/api/volume', { level: clamp(((stats?.audio?.level ?? 50) + Number(v)) / 100, 0, 1) }).catch(() => toast(T('PC link offline')));
+  } else if ((b = e.target.closest('[data-k]'))) {
+    const card = b.closest('[data-uid]'), inst = instOf(card.dataset.uid);
+    const st = RT(inst.uid, () => ({ shift: false, caps: false, ctrl: false, alt: false, win: false, altgr: false }));
+    const k = b.dataset.k, layout = inst.cfg.layout === 'en' ? 'en' : 'tr';
+    if (MOD_VK[k] || k === 'caps') { st[k] = !st[k]; return W.keyboard.update(card, inst); }
+    const mods = ['ctrl', 'alt', 'win', 'altgr'].filter(m => st[m]);
+    const withMods = (vk) => [...mods.map(m => MOD_VK[m]), ...(st.shift ? [0x10] : []), vk];
+    if (!('ch' in b.dataset)) post('/api/keys', { vks: withMods(Number(k)) }).catch(() => toast(T('PC link offline')));   // Enter, ⌫, arrows, space…
+    else if (mods.length) { const vk = kbVk(layout === 'en' ? (KB_EN[k] ?? k) : k); if (vk) post('/api/keys', { vks: withMods(vk) }).catch(() => {}); }
+    else post('/api/text', { text: kbChar(k, st, layout) }).catch(() => toast(T('PC link offline')));
+    b.classList.add('hit'); setTimeout(() => b.classList.remove('hit'), 120);
+    if (st.shift || mods.length) { st.shift = false; ['ctrl', 'alt', 'win', 'altgr'].forEach(m => st[m] = false); W.keyboard.update(card, inst); }
+  }
+});
+// Volume slider drag and touchpad buttons
+$('#homeRow').addEventListener('pointerdown', (e) => {
+  if (editing) return;
+  const tr = e.target.closest('[data-vtrack]');
+  if (tr) {
+    const card = tr.closest('[data-uid]'), st = RT('vol', () => ({ until: 0 }));
+    let last = 0;
+    const set = (ev) => {
+      const r = tr.getBoundingClientRect(), lv = clamp((ev.clientX - r.left) / r.width * 100, 0, 100);
+      st.until = Date.now() + 1500; drawVol(card, lv, false);
+      if (Date.now() - last > 70) { last = Date.now(); post('/api/volume', { level: lv / 100 }).catch(() => {}); }
+    };
+    tr.setPointerCapture(e.pointerId); set(e);
+    const mv = (ev) => set(ev), up = (ev) => { set(ev); post('/api/volume', { level: clamp((ev.clientX - tr.getBoundingClientRect().left) / tr.getBoundingClientRect().width, 0, 1) }).catch(() => {}); tr.removeEventListener('pointermove', mv); tr.removeEventListener('pointerup', up); };
+    tr.addEventListener('pointermove', mv); tr.addEventListener('pointerup', up);
+    return;
+  }
+  const pb = e.target.closest('[data-pb]');
+  if (pb) {
+    post('/api/mouse', { op: 'down', button: pb.dataset.pb }).catch(() => {});
+    const up = () => { post('/api/mouse', { op: 'up', button: pb.dataset.pb }).catch(() => {}); removeEventListener('pointerup', up); };
+    addEventListener('pointerup', up);
+  }
+});
+// Touchpads are bound after each render
+new MutationObserver(() => $$('#homeRow [data-pad]:not([data-bound])').forEach(p => { p.dataset.bound = 1; bindTouchpad(p, instOf(p.closest('[data-uid]').dataset.uid)); }))
+  .observe($('#homeRow'), { childList: true });
+// Stopwatches tick smoothly while running
+setInterval(() => { if (currentPage !== 'home') return; $$('#homeRow .w-chronograph, #homeRow .w-stopwatch').forEach(el => { const inst = instOf(el.dataset.uid); if (inst && swState(inst.uid).running) W[el.dataset.w].update(el, inst); }); }, 50);
+
+// ---------------------------------------------------------------- editors for the new widgets
+function editYouTube(inst) {
+  const c = inst.cfg;
+  const sh = openSheet('YouTube', `
+    ${field(T('Video, live stream or playlist link'), `<input class="field" data-u value="${esc(c.url || '')}" placeholder="https://www.youtube.com/watch?v=…" inputmode="url">`)}
+    ${field(T('Sound'), choice('mute', [['true', T('Muted')], ['false', T('With sound')]], String(c.mute !== false)))}
+    <p class="hint">${T('Copy the link from the YouTube address bar or the Share button.')}</p>`, { onClose: refresh });
+  $('[data-u]', sh.el).addEventListener('input', (e) => { c.url = e.target.value.trim(); });
+  bindChoices(sh.el, (k, v) => { c[k] = v === 'true'; });
+}
+function editTwitch(inst, title) {
+  const c = inst.cfg;
+  const sh = openSheet(title, `
+    ${field(T('Channel name'), `<input class="field" data-ch value="${esc(c.channel || '')}" placeholder="shroud" autocapitalize="off">`)}
+    ${inst.type === 'twitchlive' ? field(T('Sound'), choice('mute', [['true', T('Muted')], ['false', T('With sound')]], String(c.mute !== false))) : ''}`, { onClose: refresh });
+  $('[data-ch]', sh.el).addEventListener('input', (e) => { c.channel = e.target.value.trim().replace(/^.*twitch\.tv\//i, '').replace(/[/?#].*$/, ''); });
+  bindChoices(sh.el, (k, v) => { c[k] = v === 'true'; });
+}
+function editSimhub(inst) {
+  const c = inst.cfg;
+  const sh = openSheet('SimHub', `
+    ${field(T('Dashboard address'), `<input class="field" data-u value="${esc(c.url || 'http://localhost:8888/')}" inputmode="url">`)}
+    <p class="hint">${T('SimHub must be running. In SimHub open Dash Studio, pick a dashboard and copy its web address here.')}</p>`, { onClose: refresh });
+  $('[data-u]', sh.el).addEventListener('input', (e) => { c.url = e.target.value.trim(); });
+}
+function editSensors(inst) {
+  const c = inst.cfg;
+  const n = inst.type === 'sensorchart' ? 1 : inst.type === 'sensor2' ? 2 : 8;
+  const ids = n === 1 ? [c.sensor || 'cpu.load'] : (c.sensors || (n === 2 ? ['cpu.load', 'gpu.temp'] : ['cpu.load', 'cpu.temp', 'gpu.load', 'gpu.temp', 'gpu.power', 'ram.load', 'net.down']));
+  const rows = Array.from({ length: n }, (_, i) => ids[i] || '');
+  const sh = openSheet(T(W[inst.type].name), `
+    <div class="sensor-pick">${rows.map((id, i) => field(n === 1 ? T('Sensor') : `${T('Sensor')} ${i + 1}`,
+      `<div class="row">${sensorSelect(i, id)}${n === 8 ? `<button class="icon-btn ghost" data-clear="${i}" aria-label="Remove">${icon('x')}</button>` : ''}</div>`)).join('')}</div>
+    ${n === 1 ? field(T('Color'), `<div class="icon-pick" data-wc>${LAUNCH_COLORS.map(col => `<button type="button" data-col="${col}" class="${(c.color || '') === col ? 'on' : ''}"><i style="background:${col}"></i></button>`).join('')}</div>`) : ''}
+    ${sensorHint()}`, { onClose: refresh });
+  const read = () => {
+    const vals = $$('[data-sensor]', sh.el).map(s => s.value).filter(Boolean);
+    if (n === 1) c.sensor = vals[0]; else c.sensors = vals;
+  };
+  sh.el.addEventListener('change', read);
+  sh.el.addEventListener('click', (e) => {
+    let b;
+    if ((b = e.target.closest('[data-clear]'))) { const s = $(`[data-sensor="${b.dataset.clear}"]`, sh.el); s.value = ''; s.insertAdjacentHTML('afterbegin', '<option value="" selected>—</option>'); read(); }
+    else if ((b = e.target.closest('[data-col]'))) { $$('[data-col]', sh.el).forEach(x => x.classList.toggle('on', x === b)); c.color = b.dataset.col; }
+  });
+}
+function editClockface(inst) {
+  const c = inst.cfg;
+  const zones = [['', T('Local time')], ...S.zones.map(z => [z.tz, z.city]), ...ZONE_CHOICES.filter(([, tz]) => !S.zones.find(z => z.tz === tz)).map(([city, tz]) => [tz, city])];
+  const sh = openSheet(T('Clock Face'), `
+    ${field(T('City'), `<select class="field" data-tz>${zones.map(([tz, city]) => `<option value="${esc(tz)}" ${tz === (c.tz || '') ? 'selected' : ''}>${esc(city)}</option>`).join('')}</select>`)}
+    ${field(T('Style'), choice('style', [['classic', T('Classic')], ['minimal', T('Minimal')]], c.style || 'classic'))}
+    ${field(T('Second hand'), choice('seconds', [['true', T('On')], ['false', T('Off')]], String(c.seconds !== false)))}`, { onClose: refresh });
+  $('[data-tz]', sh.el).addEventListener('change', (e) => { c.tz = e.target.value; c.city = e.target.value ? e.target.selectedOptions[0].textContent : ''; });
+  bindChoices(sh.el, (k, v) => { c[k] = k === 'seconds' ? v === 'true' : v; });
+}
+function editCoin(inst) {
+  const c = inst.cfg;
+  const sh = openSheet(T('Decision Coin'), `
+    ${field(T('Sides'), choice('labels', [['heads', `${T('Heads')} / ${T('Tails')}`], ['yesno', `${T('Yes')} / ${T('No')}`], ['custom', T('Custom')]], c.labels || 'heads'))}
+    <div class="web-form">${field('A', `<input class="field" data-a value="${esc(c.a || '')}" maxlength="14">`)}${field('B', `<input class="field" data-b value="${esc(c.b || '')}" maxlength="14">`)}</div>`, { onClose: refresh });
+  bindChoices(sh.el, (k, v) => { c[k] = v; });
+  $('[data-a]', sh.el).addEventListener('input', (e) => { c.a = e.target.value; c.labels = 'custom'; });
+  $('[data-b]', sh.el).addEventListener('input', (e) => { c.b = e.target.value; c.labels = 'custom'; });
+}
+function editKeyboard(inst) {
+  const c = inst.cfg;
+  const sh = openSheet(T('Virtual Keyboard'), `
+    ${field(T('Layout'), choice('layout', [['tr', 'Türkçe Q'], ['en', 'English (US)']], c.layout || 'tr'))}
+    <p class="hint">${T('Keys are typed into whatever app is in front on your main screen. Ctrl / Alt / Win / Shift stay pressed for the next key.')}</p>`, { onClose: refresh });
+  bindChoices(sh.el, (k, v) => { c[k] = v; });
+}
+function editTouchpad(inst) {
+  const c = inst.cfg;
+  const sh = openSheet(T('Virtual Touchpad'), `${field(T('Speed'), choice('speed', [[1.2, T('Slow')], [2.2, T('Normal')], [3.5, T('Fast')], [5, T('Very fast')]], c.speed || 2.2))}`, { onClose: refresh });
+  bindChoices(sh.el, (k, v) => { c[k] = Number(v); });
+}
+
+// ---------------------------------------------------------------- home screens + edit mode
+const SIZE = { s: .6, m: 1, l: 1.6 };
+let editing = false;
+const instOf = (uid) => { for (const sc of S.screens) { const w = sc.widgets.find(h => h.uid === uid); if (w) return w; } };
+
+function renderHome(dir = 0) {
+  screenIdx = clamp(screenIdx, 0, S.screens.length - 1);
   const row = $('#homeRow');
-  const scroll = row.scrollLeft;
   row.innerHTML = '';
-  S.home.filter(h => W[h.type]).forEach((h, i, list) => {
+  const list = cur().filter(h => W[h.type]);
+  let col = null;
+  list.forEach((h, i) => {
     const def = W[h.type], el = document.createElement('div');
-    const basis = (def.basisOf ? def.basisOf(h) : def.basis) * (SIZE[h.size] || 1);
+    const basis = h.w || (def.basisOf ? def.basisOf(h) : def.basis) * (SIZE[h.size] || 1);
     el.className = `card w-${h.type}`; el.dataset.w = h.type; el.dataset.uid = h.uid;
-    el.style.flex = `1 1 ${basis}px`; el.style.minWidth = `${Math.round(basis * .62)}px`;
+    el.style.flex = `${h.h || 1} 1 0px`;
+    // Width is proportional to the widget's size (S/M/L), so resizing is always visible.
+    // Widgets marked "stack" share a column with the one before them (one above the other).
+    if (!(h.stack && col)) {
+      col = document.createElement('div'); col.className = 'home-col'; col.dataset.b = 0; row.appendChild(col);
+    } else col.classList.add('stacked');
+    col.dataset.b = Math.max(Number(col.dataset.b), basis);
+    if (h.w) col.dataset.b = h.w;
+    col.style.flex = `${col.dataset.b} 1 0px`; col.style.minWidth = `${Math.round(Math.min(col.dataset.b * .45, 300))}px`;
+    const first = i === 0 && screenIdx === 0, last = i === list.length - 1 && screenIdx === S.screens.length - 1;
     el.innerHTML = def.html(h) + (editing ? `<div class="edit-bar">
-        <button class="eb" data-ed-move="-1" ${i === 0 ? 'disabled' : ''} aria-label="Move left">${icon('left')}</button>
+        <button class="eb" data-ed-move="-1" ${first ? 'disabled' : ''} aria-label="Move left">${icon('left')}</button>
         <div class="eb-size">${['s', 'm', 'l'].map(s => `<button data-ed-size="${s}" class="${(h.size || 'm') === s ? 'on' : ''}">${s.toUpperCase()}</button>`).join('')}</div>
         ${def.edit ? `<button class="eb" data-ed-cfg aria-label="Settings">${icon('gear')}</button>` : ''}
+        ${i > 0 ? `<button class="eb ${h.stack ? 'on' : ''}" data-ed-stack aria-label="${T('Stack under the previous widget')}" title="${T('Stack under the previous widget')}">${icon('stack')}</button>` : ''}
         <button class="eb danger" data-ed-del aria-label="${T('Remove widget')}">${icon('trash')}</button>
-        <button class="eb" data-ed-move="1" ${i === list.length - 1 ? 'disabled' : ''} aria-label="Move right">${icon('right')}</button>
+        <button class="eb" data-ed-move="1" ${last ? 'disabled' : ''} aria-label="Move right">${icon('right')}</button>
       </div>` : '');
-    row.appendChild(el);
+    col.appendChild(el);
+    if (editing) {
+      if (!col.querySelector('.rz-w')) col.insertAdjacentHTML('beforeend', '<div class="rz-w" data-rz="w" title="Drag to resize"><i></i></div>');
+      if (h.stack) el.insertAdjacentHTML('afterbegin', '<div class="rz-h" data-rz="h" title="Drag to resize"><i></i></div>');
+    }
     def.update(el, h);
   });
   if (editing) {
@@ -653,11 +1217,68 @@ function renderHome() {
     add.innerHTML = `${icon('plus')}<span>${T('Add widget')}</span>`;
     row.appendChild(add);
   }
-  row.scrollLeft = scroll;
+  if (dir) { row.classList.remove('slide-l', 'slide-r'); void row.offsetWidth; row.classList.add(dir > 0 ? 'slide-l' : 'slide-r'); }
+  renderDots();
   $('#stage').classList.toggle('editing', editing);
   $('#editDone span').textContent = T('Done');
   $('#editBtn').classList.toggle('active', editing);
 }
+// Resize handles: right edge = width of the column, top edge of a stacked card = height share.
+$('#homeRow').addEventListener('pointerdown', (e) => {
+  const hd = e.target.closest('[data-rz]'); if (!hd || !editing) return;
+  e.preventDefault(); e.stopPropagation();
+  const scale = 2560 / stage.getBoundingClientRect().width, x0 = e.clientX, y0 = e.clientY;
+  if (hd.dataset.rz === 'w') {
+    const col = hd.parentElement, insts = $$('.card[data-uid]', col).map(c => instOf(c.dataset.uid));
+    const w0 = col.getBoundingClientRect().width * scale;
+    // Freeze every other column at its current pixel width so only this one changes.
+    $$('.home-col', col.parentElement).forEach(c => { if (c !== col) c.style.flex = `0 0 ${c.getBoundingClientRect().width * scale}px`; });
+    const mv = (ev) => { const w = clamp(w0 + (ev.clientX - x0) * scale, 200, 2300); col.style.flex = `0 0 ${w}px`; col.dataset.nw = w; };
+    const up = () => {
+      removeEventListener('pointermove', mv); removeEventListener('pointerup', up);
+      // Store every column's width so the layout stays exactly as dragged.
+      $$('.home-col', col.parentElement).forEach(c => { const wpx = c.getBoundingClientRect().width * scale; $$('.card[data-uid]', c).forEach(k => { const it = instOf(k.dataset.uid); if (it) it.w = Math.round(wpx); }); });
+      save(); renderHome();
+    };
+    addEventListener('pointermove', mv); addEventListener('pointerup', up);
+  } else {
+    const card = hd.parentElement, prev = card.previousElementSibling; if (!prev) return;
+    const a = instOf(prev.dataset.uid), b = instOf(card.dataset.uid);
+    const ha = prev.getBoundingClientRect().height * scale, hb = card.getBoundingClientRect().height * scale;
+    const mv = (ev) => {
+      const d = (ev.clientY - y0) * scale, na = clamp(ha + d, 120, ha + hb - 120), nb = ha + hb - na;
+      a.h = +(na / 100).toFixed(2); b.h = +(nb / 100).toFixed(2);
+      prev.style.flex = `${a.h} 1 0px`; card.style.flex = `${b.h} 1 0px`;
+    };
+    const up = () => { removeEventListener('pointermove', mv); removeEventListener('pointerup', up); save(); renderHome(); };
+    addEventListener('pointermove', mv); addEventListener('pointerup', up);
+  }
+}, true);
+
+// Screen dots under the home screen; in edit mode also "add screen" and "delete screen".
+function renderDots() {
+  const d = $('#screenDots');
+  d.innerHTML = S.screens.map((_, i) => `<button class="sd ${i === screenIdx ? 'on' : ''}" data-screen="${i}" aria-label="Screen ${i + 1}"><i></i></button>`).join('')
+    + (editing ? `<button class="sd-btn" data-screen-add>${icon('plus')} ${T('Screen')}</button>`
+      + (S.screens.length > 1 ? `<button class="sd-btn danger" data-screen-del>${icon('trash')} ${T('Delete screen')}</button>` : '') : '');
+  d.style.display = currentPage === 'home' && (S.screens.length > 1 || editing) ? '' : 'none';
+}
+function goScreen(i) {
+  if (i < 0 || i >= S.screens.length || i === screenIdx) return;
+  const dir = i > screenIdx ? 1 : -1;
+  screenIdx = i;
+  try { sessionStorage.setItem('edgeDeckScreen', i); } catch {}
+  renderHome(dir);
+}
+$('#screenDots').addEventListener('click', (e) => {
+  let b;
+  if ((b = e.target.closest('[data-screen]'))) goScreen(+b.dataset.screen);
+  else if (e.target.closest('[data-screen-add]')) { S.screens.splice(screenIdx + 1, 0, { widgets: [] }); save(); goScreen(screenIdx + 1); }
+  else if (e.target.closest('[data-screen-del]')) {
+    if (cur().length && !confirm(T('Delete this screen and its widgets?'))) return;
+    S.screens.splice(screenIdx, 1); screenIdx = Math.max(0, screenIdx - 1); save(); renderHome();
+  }
+});
 function updateWidgets(type) {
   $$(`#homeRow [data-w${type ? `="${type}"` : ''}]`).forEach(el => {
     const inst = instOf(el.dataset.uid); if (inst) W[el.dataset.w].update(el, inst);
@@ -674,12 +1295,20 @@ $('#homeRow').addEventListener('click', (e) => {
   let b;
   if (e.target.closest('[data-ed-add]')) return openWidgetPicker();
   if (!inst) return;
-  const i = S.home.indexOf(inst);
+  const list = cur(), i = list.indexOf(inst);
   if ((b = e.target.closest('[data-ed-move]'))) {
-    const j = i + Number(b.dataset.edMove);
-    if (j >= 0 && j < S.home.length) [S.home[i], S.home[j]] = [S.home[j], S.home[i]];
-  } else if ((b = e.target.closest('[data-ed-size]'))) inst.size = b.dataset.edSize;
-  else if (e.target.closest('[data-ed-del]')) S.home.splice(i, 1);
+    const d = Number(b.dataset.edMove), j = i + d;
+    if (j >= 0 && j < list.length) [list[i], list[j]] = [list[j], list[i]];
+    else if (S.screens[screenIdx + d]) {
+      // Past the edge: carry the widget over to the neighbouring screen.
+      list.splice(i, 1);
+      const next = S.screens[screenIdx + d].widgets;
+      d > 0 ? next.unshift(inst) : next.push(inst);
+      save(); return goScreen(screenIdx + d);
+    }
+  } else if ((b = e.target.closest('[data-ed-size]'))) { inst.size = b.dataset.edSize; delete inst.w; cur().filter(x => x !== inst && card.parentElement.contains($(`[data-uid="${x.uid}"]`))).forEach(x => delete x.w); }
+  else if (e.target.closest('[data-ed-stack]')) inst.stack = !inst.stack;
+  else if (e.target.closest('[data-ed-del]')) { list.splice(i, 1); if (list[i] && i === 0) list[i].stack = false; }
   else if (e.target.closest('[data-ed-cfg]')) return W[inst.type].edit(inst);
   else return;
   save(); renderHome();
@@ -719,9 +1348,8 @@ function openWidgetPicker() {
       ${W[t].isNew ? '<em>NEW</em>' : ''}</button>`).join('')}</div>`, { wide: true });
   sh.el.addEventListener('click', (e) => {
     const b = e.target.closest('[data-pick]'); if (!b) return;
-    const inst = { uid: Math.random().toString(36).slice(2, 9), type: b.dataset.pick, size: 'm', cfg: b.dataset.pick === 'launcher' ? { items: [] } : {} };
-    S.home.push(inst); save(); renderHome(); sh.close();
-    requestAnimationFrame(() => { const row = $('#homeRow'); row.scrollLeft = row.scrollWidth; });
+    const inst = { uid: Math.random().toString(36).slice(2, 9), type: b.dataset.pick, size: 'm', cfg: ['launcher', 'deck'].includes(b.dataset.pick) ? { items: [] } : {} };
+    cur().push(inst); save(); renderHome(); sh.close();
     if (W[inst.type].edit) W[inst.type].edit(inst);
   });
 }
@@ -758,12 +1386,12 @@ function editWeb(inst) {
 
 function editPhoto(inst) {
   const c = inst.cfg; c.srcs ||= [];
-  const sh = openSheet(T('Photos'), `
+  const sh = openSheet(T('Photos & videos'), `
     <div class="thumbs" data-thumbs></div>
-    <label class="btn-xl upload">${icon('plus')} ${T('Add photos')}<input type="file" accept="image/*" multiple hidden data-file></label>
+    <label class="btn-xl upload">${icon('plus')} ${T('Add photos')}<input type="file" accept="image/*,video/mp4,video/webm" multiple hidden data-file></label>
     ${field(T('Change every'), choice('every', [[5, '5 s'], [10, '10 s'], [30, '30 s'], [60, '1 min'], [300, '5 min']], c.every || 10))}
     ${field(T('Size'), choice('fit', [['cover', T('Fill')], ['contain', T('Fit')]], c.fit || 'cover'))}`, { onClose: refresh });
-  const draw = () => { $('[data-thumbs]', sh.el).innerHTML = c.srcs.map((s, i) => `<div class="thumb"><img src="${esc(s)}" alt=""><button data-rm="${i}" aria-label="Remove">${icon('x')}</button></div>`).join(''); };
+  const draw = () => { $('[data-thumbs]', sh.el).innerHTML = c.srcs.map((s, i) => `<div class="thumb">${/\.(mp4|webm)$/i.test(s) ? `<video src="${esc(s)}" muted></video>` : `<img src="${esc(s)}" alt="">`}<button data-rm="${i}" aria-label="Remove">${icon('x')}</button></div>`).join(''); };
   draw();
   sh.el.addEventListener('click', (e) => { const b = e.target.closest('[data-rm]'); if (b) { c.srcs.splice(+b.dataset.rm, 1); draw(); save(); } });
   $('[data-file]', sh.el).addEventListener('change', async (e) => {
@@ -789,35 +1417,74 @@ function editCountdown(inst) {
 }
 
 // Launcher editor: current buttons on top, a picker of installed apps / Steam games / websites below.
-const LAUNCH_ICONS = ['activity', 'globe', 'play', 'music', 'folder', 'steam', 'discord', 'spotify', 'gear', 'cpu', 'home', 'note', 'image', 'gamepad'];
+const LAUNCH_ICONS = ['activity', 'globe', 'play', 'music', 'folder', 'steam', 'discord', 'spotify', 'twitch', 'gear', 'cpu', 'home', 'note', 'image', 'gamepad', 'keyboard', 'mouse', 'mute', 'volup', 'coin', 'grid'];
 const LAUNCH_COLORS = ['#f5b301', '#ff5a36', '#ff3b3b', '#ff4fd8', '#8a7dff', '#5865f2', '#2a8cff', '#3ee0c5', '#1ed760', '#ffffff'];
 let appList = null;
-function editLauncher(inst) {
+function editLauncher(inst, deck) {
   const items = launcherItems(inst);
-  let tab = 'apps', query = '';
-  const sh = openSheet(T('Launcher'), `
-    <div class="sub-h" style="margin-top:0">${T('Buttons')}</div>
+  let tab = 'apps', query = '', editIdx = null;
+  const TABS = [['apps', T('Apps')], ['games', T('Steam games')], ['web', T('Website')], ['keys', T('Shortcut keys')], ['actions', T('Media & more')]];
+  const sh = openSheet(deck ? 'Stream Deck' : T('Launcher'), `
+    <div class="sub-h" style="margin-top:0">${T('Buttons')} <span class="faint" style="text-transform:none;letter-spacing:0">· ${T('tap a button to edit it')}</span></div>
     <div class="cur-items" data-cur></div>
-    <div class="tabs">${[['apps', T('Apps')], ['games', T('Steam games')], ['web', T('Website')]].map(([k, l]) => `<button class="pill" data-tab="${k}">${l}</button>`).join('')}
+    <div class="tabs">${TABS.map(([k, l]) => `<button class="pill" data-tab="${k}">${l}</button>`).join('')}
       <input class="field search" data-q placeholder="${T('Search…')}" enterkeyhint="search"></div>
     <div data-pane></div>`, { wide: true, onClose: refresh });
-  const cur = $('[data-cur]', sh.el), pane = $('[data-pane]', sh.el);
+  const curEl = $('[data-cur]', sh.el), pane = $('[data-pane]', sh.el);
   const drawCur = () => {
-    cur.innerHTML = items.map((l, i) => `<div class="cur" style="--c:${esc(l.color || 'var(--accent)')}">${launchIcon(l)}<span class="ellipsis">${esc(l.name)}</span>
+    curEl.innerHTML = items.map((l, i) => `<div class="cur ${editIdx === i ? 'sel' : ''}" style="--c:${esc(l.color || 'var(--accent)')}">
+      <button class="cur-main" data-cedit="${i}">${launchIcon(l)}<span class="ellipsis">${esc(l.name)}</span></button>
       <div class="cur-ctl"><button data-cmove="${i},-1" aria-label="Move left">${icon('left')}</button><button data-cdel="${i}" aria-label="Remove">${icon('x')}</button><button data-cmove="${i},1" aria-label="Move right">${icon('right')}</button></div></div>`).join('')
       || `<p class="hint">${T('Tap an app to add it.')}</p>`;
   };
   const add = (item) => { items.push(item); drawCur(); save(); toast(`${T('Added')} ${item.name}`); };
+  const iconRow = (cur) => `<div class="icon-pick" data-wi>${LAUNCH_ICONS.map(ic => `<button type="button" data-ic="${ic}" class="${ic === cur ? 'on' : ''}">${icon(ic)}</button>`).join('')}</div>`;
+  const colorRow = (cur) => `<div class="icon-pick" data-wc>${LAUNCH_COLORS.map(c => `<button type="button" data-col="${c}" class="${c === cur ? 'on' : ''}"><i style="background:${c}"></i></button>`).join('')}</div>`;
+  const picked = (sel) => $(`${sel} .on`, pane)?.dataset;
+  const KEY_CHOICES = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'].map(k => [k.charCodeAt(0), k])
+    .concat([[112, 'F1'], [113, 'F2'], [114, 'F3'], [115, 'F4'], [116, 'F5'], [117, 'F6'], [118, 'F7'], [119, 'F8'], [120, 'F9'], [121, 'F10'], [122, 'F11'], [123, 'F12'],
+      [27, 'Esc'], [9, 'Tab'], [13, 'Enter'], [32, 'Space'], [8, 'Backspace'], [46, 'Delete'], [44, 'Print Screen'], [36, 'Home'], [35, 'End'], [33, 'Page Up'], [34, 'Page Down'],
+      [37, '←'], [38, '↑'], [39, '→'], [40, '↓']]);
+
   const drawPane = async () => {
-    $$('[data-tab]', sh.el).forEach(b => b.classList.toggle('on', b.dataset.tab === tab));
-    $('[data-q]', sh.el).style.visibility = tab === 'web' ? 'hidden' : 'visible';
+    $$('[data-tab]', sh.el).forEach(b => b.classList.toggle('on', b.dataset.tab === tab && editIdx == null));
+    $('[data-q]', sh.el).style.visibility = (tab === 'apps' || tab === 'games') && editIdx == null ? 'visible' : 'hidden';
+    if (editIdx != null) {          // edit an existing button
+      const l = items[editIdx];
+      pane.innerHTML = `<div class="web-form">
+        ${field(T('Name'), `<input class="field" data-en value="${esc(l.name)}" maxlength="24">`)}
+        ${(l.action || 'launch') === 'launch' ? field(T('Opens'), `<input class="field" data-et value="${esc(l.target)}">`) : l.action === 'text' ? field(T('Text'), `<input class="field" data-ex value="${esc(l.text)}">`) : '<div></div>'}
+        ${field(T('Icon'), `${iconRow(l.img ? '' : l.icon)}${l.img ? `<label class="chk"><input type="checkbox" data-keepimg checked> ${T('Use the app’s own picture')}</label>` : ''}`)}
+        ${field(T('Color'), colorRow(l.color))}
+        <button class="btn-xl" data-esave>${icon('check')} ${T('Save')}</button></div>`;
+      return;
+    }
     if (tab === 'web') {
       pane.innerHTML = `<div class="web-form">
         ${field(T('Name'), `<input class="field" data-wn maxlength="24" placeholder="YouTube">`)}
         ${field(T('Address (URL)'), `<input class="field" data-wu placeholder="https://www.youtube.com" inputmode="url">`)}
-        ${field(T('Icon'), `<div class="icon-pick" data-wi>${LAUNCH_ICONS.map((ic, i) => `<button type="button" data-ic="${ic}" class="${i === 1 ? 'on' : ''}">${icon(ic)}</button>`).join('')}</div>`)}
-        ${field(T('Color'), `<div class="icon-pick" data-wc>${LAUNCH_COLORS.map((c, i) => `<button type="button" data-col="${c}" class="${i === 0 ? 'on' : ''}"><i style="background:${c}"></i></button>`).join('')}</div>`)}
+        ${field(T('Icon'), iconRow('globe'))}${field(T('Color'), colorRow(LAUNCH_COLORS[0]))}
         <button class="btn-xl" data-wadd>${icon('plus')} ${T('Add')}</button></div>`;
+      return;
+    }
+    if (tab === 'keys') {
+      pane.innerHTML = `<div class="web-form">
+        ${field(T('Keys'), `<div class="row" style="gap:10px">${['Ctrl', 'Shift', 'Alt', 'Win'].map(m => `<button type="button" class="pill" data-mod="${m}">${m}</button>`).join('')}
+          <select class="field" data-key style="flex:1">${KEY_CHOICES.map(([v, l]) => `<option value="${v}">${l}</option>`).join('')}</select></div>`)}
+        ${field(T('Name'), `<input class="field" data-kn maxlength="24" placeholder="${T('e.g. Mute mic')}">`)}
+        ${field(T('Icon'), iconRow('keyboard'))}${field(T('Color'), colorRow(LAUNCH_COLORS[4]))}
+        <p class="hint">${T('Sends the key combination to the app in front, e.g. push-to-talk, OBS hotkeys, Discord mute.')}</p>
+        <button class="btn-xl" data-kadd>${icon('plus')} ${T('Add')}</button></div>`;
+      return;
+    }
+    if (tab === 'actions') {
+      const media = [['playpause', 'Play / Pause', 'play'], ['next', 'Next track', 'next'], ['prev', 'Previous track', 'prev'], ['mute', 'Mute', 'mute'], ['volup', 'Volume up', 'volup'], ['voldown', 'Volume down', 'voldown']];
+      pane.innerHTML = `<div class="sub-h" style="margin-top:0">${T('Media')}</div>
+        <div class="app-grid">${media.map(([cmd, n, ic]) => `<button class="app" data-madd="${cmd}" data-mn="${esc(T(n))}" data-mi="${ic}">${icon(ic)}<span class="ellipsis">${T(n)}</span></button>`).join('')}
+        ${S.screens.map((_, i) => `<button class="app" data-sadd="${i}">${icon('home')}<span class="ellipsis">${T('Screen')} ${i + 1}</span></button>`).join('')}</div>
+        <div class="sub-h">${T('Type a text')}</div>
+        <div class="add-row"><input class="field" data-tn placeholder="${T('Name')}" maxlength="24" style="flex:.5"><input class="field" data-tt placeholder="${T('Text to type, e.g. gg wp')}">
+          <button class="icon-btn" data-tadd aria-label="Add">${icon('plus')}</button></div>`;
       return;
     }
     if (!appList) {
@@ -835,23 +1502,48 @@ function editLauncher(inst) {
   $('[data-q]', sh.el).addEventListener('input', (e) => { query = e.target.value.trim().toLowerCase(); drawPane(); });
   sh.el.addEventListener('click', (e) => {
     let b;
-    if ((b = e.target.closest('[data-tab]'))) { tab = b.dataset.tab; drawPane(); }
+    if ((b = e.target.closest('[data-tab]'))) { tab = b.dataset.tab; editIdx = null; drawCur(); drawPane(); }
+    else if ((b = e.target.closest('[data-cedit]'))) { editIdx = +b.dataset.cedit === editIdx ? null : +b.dataset.cedit; drawCur(); drawPane(); }
     else if ((b = e.target.closest('[data-app]'))) {
       const a = pane._list[+b.dataset.app];
       add({ name: a.name.replace(/:.*$/, '').slice(0, 24), target: a.target, img: a.img, color: tab === 'games' ? '#66c0f4' : null });
     }
-    else if ((b = e.target.closest('[data-cdel]'))) { items.splice(+b.dataset.cdel, 1); drawCur(); save(); }
+    else if ((b = e.target.closest('[data-cdel]'))) { items.splice(+b.dataset.cdel, 1); editIdx = null; drawCur(); drawPane(); save(); }
     else if ((b = e.target.closest('[data-cmove]'))) {
       const [i, d] = b.dataset.cmove.split(',').map(Number), j = i + d;
-      if (j >= 0 && j < items.length) { [items[i], items[j]] = [items[j], items[i]]; drawCur(); save(); }
+      if (j >= 0 && j < items.length) { [items[i], items[j]] = [items[j], items[i]]; if (editIdx === i) editIdx = j; drawCur(); save(); }
     }
+    else if ((b = e.target.closest('[data-mod]'))) b.classList.toggle('on');
     else if ((b = e.target.closest('[data-ic], [data-col]'))) { $$('button', b.parentElement).forEach(x => x.classList.toggle('on', x === b)); }
+    else if (e.target.closest('[data-esave]')) {
+      const l = items[editIdx];
+      l.name = $('[data-en]', pane).value.trim() || l.name;
+      if ($('[data-et]', pane)) { let t = $('[data-et]', pane).value.trim(); if (t && !/^[a-z][a-z0-9+.-]*:/i.test(t) && !/^[a-z]:\\/i.test(t)) t = 'https://' + t; l.target = t || l.target; }
+      if ($('[data-ex]', pane)) l.text = $('[data-ex]', pane).value;
+      const keep = $('[data-keepimg]', pane); if (keep && !keep.checked) delete l.img;
+      if (picked('[data-wi]') && (!l.img || (keep && !keep.checked))) l.icon = picked('[data-wi]').ic;
+      if (picked('[data-wc]')) l.color = picked('[data-wc]').col;
+      editIdx = null; drawCur(); drawPane(); save(); toast(T('Saved'));
+    }
     else if (e.target.closest('[data-wadd]')) {
       let u = $('[data-wu]', pane).value.trim(); const n = $('[data-wn]', pane).value.trim();
       if (!u || !n) return;
       if (!/^[a-z][a-z0-9+.-]*:/i.test(u)) u = 'https://' + u;
-      add({ name: n, target: u, icon: $('[data-wi] .on', pane).dataset.ic, color: $('[data-wc] .on', pane).dataset.col });
+      add({ name: n, target: u, icon: picked('[data-wi]').ic, color: picked('[data-wc]').col });
       $('[data-wu]', pane).value = $('[data-wn]', pane).value = '';
+    }
+    else if (e.target.closest('[data-kadd]')) {
+      const mods = $$('[data-mod].on', pane).map(m => m.dataset.mod), keySel = $('[data-key]', pane);
+      const vks = [...mods.map(m => ({ Ctrl: 0x11, Shift: 0x10, Alt: 0x12, Win: 0x5B })[m]), Number(keySel.value)];
+      const label = [...mods, keySel.selectedOptions[0].textContent].join('+');
+      add({ action: 'keys', vks, name: $('[data-kn]', pane).value.trim() || label, icon: picked('[data-wi]').ic, color: picked('[data-wc]').col });
+    }
+    else if ((b = e.target.closest('[data-madd]'))) add({ action: 'media', cmd: b.dataset.madd, name: b.dataset.mn, icon: b.dataset.mi, color: '#1ed760' });
+    else if ((b = e.target.closest('[data-sadd]'))) add({ action: 'screen', screen: +b.dataset.sadd, name: `${T('Screen')} ${+b.dataset.sadd + 1}`, icon: 'home', color: '#8a7dff' });
+    else if (e.target.closest('[data-tadd]')) {
+      const t = $('[data-tt]', pane).value; if (!t) return;
+      add({ action: 'text', text: t, name: $('[data-tn]', pane).value.trim() || t.slice(0, 20), icon: 'note', color: '#3ee0c5' });
+      $('[data-tt]', pane).value = $('[data-tn]', pane).value = '';
     }
   });
 }
@@ -1118,9 +1810,7 @@ function renderSettings() {
     <div class="card"><div class="sub-h">${T('Home screen widgets')}</div>
       <button class="btn-xl" data-customize>${icon('edit')} ${T('Customize home screen')}</button>
       <p class="hint" style="margin-top:10px">${T('Add, remove, resize and reorder widgets.')}</p>
-      <div class="sub-h">${T('Game mode')}</div>
-      <div class="set-row"><div>${T('Game mode')}<div class="hint">${T('Locks the mouse to the game screen so it can’t slip onto the Edge. Touch still works. Auto: only while a game is full screen.')}</div></div>
-        ${seg('gameMode', [['off', T('Off')], ['auto', T('Auto')], ['on', T('On')]], S.gameMode)}</div>
+
       <div class="sub-h">${T('Format')}</div>
       <div class="set-row"><div>${T('Clock')}</div>${seg('clock24', [[false, T('12-hour')], [true, T('24-hour')]], S.clock24)}</div>
       <div class="set-row"><div>${T('Show seconds')}</div>${tog('showSeconds', S.showSeconds)}</div>
@@ -1152,28 +1842,11 @@ function setPath(path, val) {
 }
 const getPath = (path) => path.split('.').reduce((o, k) => o?.[k], S);
 
-// ---------------------------------------------------------------- game mode
-async function setGameMode(mode, quiet) {
-  S.gameMode = mode; save();
-  try { await fetch(API + '/api/gamemode', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ mode }) }); }
-  catch { if (!quiet) toast(T('PC link offline')); return; }
-  if (!quiet) toast(T(mode === 'on' ? 'Game mode on — mouse locked to the game screen' : mode === 'auto' ? 'Game mode: automatic' : 'Game mode off'));
-  updateGameBtn();
-}
-function updateGameBtn() {
-  const b = $('#gameBtn'), g = stats?.game;
-  b.classList.toggle('on', !!g?.active);
-  b.dataset.mode = S.gameMode;
-  $('.badge', b).textContent = S.gameMode === 'auto' ? 'A' : S.gameMode === 'on' ? 'ON' : '';
-  b.title = `${T('Game mode')}: ${T(S.gameMode === 'on' ? 'On' : S.gameMode === 'auto' ? 'Auto' : 'Off')}${g?.game ? ' · ' + g.game : ''}`;
-}
-// Rail button: switch between "always on" and the usual automatic mode.
-$('#gameBtn').addEventListener('click', () => setGameMode(S.gameMode === 'on' ? 'auto' : 'on'));
 $('#editBtn').addEventListener('click', () => setEditing(!editing));
 function settingsChanged(kind) {
   save(); applyTheme(); renderSettings();
   if (kind !== 'appearance') renderHome();
-  if (kind === 'weather') loadWeather();
+  if (kind === 'weather') { loadWeather(); loadAqi(); }
   checkDim();
 }
 $('#page-settings').addEventListener('click', (e) => {
@@ -1186,7 +1859,6 @@ $('#page-settings').addEventListener('click', (e) => {
     let v = b.dataset.v; v = v === 'true' ? true : v === 'false' ? false : isNaN(v) ? v : Number(v);
     const unitChanged = b.dataset.set === 'tempUnit' && S.tempUnit !== v;
     setPath(b.dataset.set, v); settingsChanged(unitChanged ? 'weather' : undefined);
-    if (b.dataset.set === 'gameMode') setGameMode(v);
   }
   else if (t.closest('[data-customize]')) setEditing(true);
   else if ((b = t.closest('[data-zdel]'))) { S.zones.splice(+b.dataset.zdel, 1); settingsChanged(); }
@@ -1232,15 +1904,19 @@ function go(page) {
   if (page === 'world') renderWorldPage();
   if (page === 'settings') renderSettings();
   if (page === 'home') updateWidgets();
+  renderDots();
   try { sessionStorage.setItem('edgeDeckPage', page); } catch {}
 }
-$('#rail').addEventListener('click', (e) => { const b = e.target.closest('[data-page]'); if (b) go(b.dataset.page); });
+$('#rail').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-page]'); if (!b) return;
+  if (b.dataset.page === 'home' && currentPage === 'home') return goScreen(0);   // tap Home again: first screen
+  go(b.dataset.page);
+});
 
 // Horizontal swipe between pages.
 let sw = null;
 $('#pages').addEventListener('pointerdown', (e) => {
-  if (editing || e.target.closest('input, textarea, select, iframe, .todo-list, .settings-page .card, .sheet-wrap')) return;
-  const row = e.target.closest('.home-row'); if (row && row.scrollWidth > row.clientWidth + 4) return;
+  if (editing || e.target.closest('input, textarea, select, iframe, [data-noswipe], .todo-list, .settings-page .card, .sheet-wrap')) return;
   sw = { x: e.clientX, y: e.clientY, t: Date.now() };
 });
 addEventListener('pointerup', (e) => {
@@ -1248,6 +1924,8 @@ addEventListener('pointerup', (e) => {
   const dx = e.clientX - sw.x, dy = e.clientY - sw.y, dt = Date.now() - sw.t; sw = null;
   const scale = stage.getBoundingClientRect().width / 2560;
   if (Math.abs(dx) / scale > 220 && Math.abs(dx) > Math.abs(dy) * 2 && dt < 700) {
+    // On the home screen a swipe flips between home screens; elsewhere it moves between pages.
+    if (currentPage === 'home') return goScreen(screenIdx + (dx < 0 ? 1 : -1));
     const i = ORDER.indexOf(currentPage) + (dx < 0 ? 1 : -1);
     if (i >= 0 && i < ORDER.length) go(ORDER[i]);
   }
@@ -1278,14 +1956,20 @@ addEventListener('pointerdown', (e) => {
   if (stage.classList.contains('dimmed')) { wakeUntil = Date.now() + 90e3; checkDim(); }
 }, true);
 
+// ---------------------------------------------------------------- keyboard focus for text fields
+let typingT;
+const isField = (el) => el && el.matches && el.matches('input:not([type=checkbox]):not([type=file]), textarea, select');
+addEventListener('focusin', (e) => { if (isField(e.target)) { clearTimeout(typingT); post('/api/typing', { on: true }).catch(() => {}); } });
+addEventListener('focusout', (e) => { if (isField(e.target)) typingT = setTimeout(() => post('/api/typing', { on: false }).catch(() => {}), 400); });
+
 // ---------------------------------------------------------------- boot
 async function boot() {
   fit();
   await loadSettings();
   applyTheme();
   await loadLaunchers();
+  try { screenIdx = Number(params.get('screen') ?? sessionStorage.getItem('edgeDeckScreen') ?? 0) || 0; } catch {}
   renderHome();
-  if (!DEMO) setGameMode(S.gameMode, true);
   if (DEMO) { pomo.remaining = 17 * 60 + 42; pomo.sessions = 2; }
   let start = params.get('page') || 'home'; try { start = params.get('page') || sessionStorage.getItem('edgeDeckPage') || 'home'; } catch {}
   go(ORDER.includes(start) ? start : 'home');
@@ -1293,8 +1977,9 @@ async function boot() {
   if (params.get('sheet') === 'widgets') openWidgetPicker();
   pollStats(); setInterval(pollStats, 1500);
   loadWeather(); setInterval(loadWeather, 15 * 60e3);
+  loadAqi(); setInterval(loadAqi, 30 * 60e3);
   setInterval(() => {
-    ['clock', 'world', 'calendar', 'focus', 'photo', 'countdown'].forEach(updateWidgets);
+    ['clock', 'world', 'calendar', 'focus', 'photo', 'countdown', 'clockface'].forEach(updateWidgets);
     pomo.tick(); if (currentPage === 'focus') updateFocus();
     if (currentPage === 'media') updateMediaPage();
   }, 1000);

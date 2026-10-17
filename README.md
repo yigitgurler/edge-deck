@@ -1,11 +1,11 @@
 # Edge Deck
 
 **CORSAIR XENEON EDGE** (14.5", 2560×720 dokunmatik) için özel olarak tasarlanmış bir kontrol paneli.
-Saat, hava durumu (Charlotte ve İstanbul), bilgisayarın canlı CPU / GPU / RAM değerleri, çalan müzik ve kontrolleri, uygulama kısayolları, odak sayacı, yapılacaklar listesi ve dünya saatleri tek ekranda.
+Saat, hava durumu (Charlotte ve İstanbul), canlı sensörler, FPS, müzik ve ses kontrolü, uygulama ve oyun kısayolları, Stream Deck, sanal klavye ve touchpad, YouTube ve Twitch… iCUE'daki bütün bileşenlerin karşılığı, kaydırarak geçilen birden fazla ekranda; hepsi doğrudan Edge'in üzerinden düzenlenebilir.
 
 ![Ana ekran](screenshots/home.png)
 
-<p align="center"><a href="#kurulum-2-dakika-teknik-bilgi-gerekmez"><b>Kurulum</b></a> · <a href="#ekran-görüntüleri"><b>Ekran görüntüleri</b></a> · <a href="#temalar"><b>Temalar</b></a> · <a href="#kullanım"><b>Kullanım</b></a></p>
+<p align="center"><a href="#kurulum-2-dakika-teknik-bilgi-gerekmez"><b>Kurulum</b></a> · <a href="#ekran-görüntüleri"><b>Ekran görüntüleri</b></a> · <a href="#temalar"><b>Temalar</b></a> · <a href="#birden-fazla-ekran"><b>Ekranlar</b></a> · <a href="#ekranı-kendiniz-düzenleyin"><b>Düzenleme</b></a> · <a href="#kullanım"><b>Kullanım</b></a></p>
 
 ---
 
@@ -32,44 +32,72 @@ iCUE, Edge ekranını kendi widget'ları için kullanıyor olabilir. Şu iki yol
 
 ---
 
+## Birden fazla ekran
+
+Ana ekran tek sayfadan ibaret değil. Bileşenler istediğiniz kadar **ekrana** dağıtılabilir:
+
+- Ana ekranda **sağa / sola kaydırarak** ekranlar arasında geçin.
+- Alttaki **noktalara** dokunarak da geçebilirsiniz. Soldaki **ev** simgesine tekrar dokunmak ilk ekrana döner.
+- Hazır gelen ekranlar:
+  1. Günlük
+  2. Sensörler ve performans
+  3. Saatler ve eğlence
+- Düzenleme modunda alttan **+ Ekran** ile yeni ekran ekleyin; **Ekranı sil** ile kaldırın.
+
+![Sensör ekranı](screenshots/screen-sensors.png)
+![Saatler ve eğlence](screenshots/screen-fun.png)
+
+---
+
 ## Ekranı kendiniz düzenleyin
 
 Hiçbir dosyaya dokunmadan, doğrudan Edge'in üzerinden:
 
 1. Soldaki **kalem** simgesine dokunun (ya da ana ekranda boş bir yere basılı tutun).
 2. Her bileşenin altında bir düzenleme çubuğu çıkar:
-   - **‹ ›** ile sola veya sağa taşıyın.
-   - **S / M / L** ile boyutunu değiştirin.
+   - **‹ ›** ile sola veya sağa taşıyın. En kenardan devam ederseniz bileşen yan ekrana geçer.
+   - **S / M / L** ile hazır boyut seçin.
+   - **Alt alta** simgesiyle bileşeni bir öncekinin **altına** yerleştirin; iki bileşen aynı sütunu paylaşır.
    - **⚙** ile ayarlarını açın.
-   - **çöp kutusu** ile kaldırın.
-3. En sağdaki **+ Bileşen ekle** kutusundan yenisini ekleyin.
-4. Bitince üstteki **Bitti** düğmesine dokunun.
+   - **Çöp kutusu** ile kaldırın.
+3. **Sürükleyerek boyutlandırın:**
+   - Her sütunun sağ kenarındaki **sarı çubuğu** çekerek genişliği serbestçe ayarlayın.
+   - Alt alta duran iki bileşenin arasındaki çubukla yükseklik paylaşımını ayarlayın.
+4. En sağdaki **+ Bileşen ekle** kutusundan yenisini ekleyin.
+5. Bitince üstteki **Bitti** düğmesine dokunun.
 
 ![Düzenleme modu](screenshots/edit-mode.png)
 ![Bileşen ekle](screenshots/add-widget.png)
+![Alt alta bileşenler](screenshots/stacked.png)
 
-**Eklenebilecek bileşenler:** Saat, hava durumu, sistem, müzik, takvim, dünya saatleri, odak sayacı ve yeni gelenler:
+### Bileşenler
 
-| Bileşen | Ne yapar |
+iCUE'daki Xeneon Edge bileşenlerinin hepsinin karşılığı var (Windows bildirimleri hariç; Windows bunu sadece mağaza uygulamalarına izin veriyor):
+
+| Grup | Bileşenler |
 |---|---|
-| **Uygulama başlatıcı** | ⚙ ile açılan listeden **bilgisayarda yüklü programları** (kendi simgeleriyle), **Steam oyunlarını** (kapak görselleriyle) ya da **web sitelerini** seçip ekleyin. Birden fazla başlatıcı kutusu kullanılabilir. |
-| **Web sitesi** | Herhangi bir site: Twitch, hava haritası, bir kontrol paneli… (Bazı siteler başka sayfaların içinde gösterilmeyi engeller.) |
-| **Fotoğraflar** | Kendi fotoğraflarınızdan slayt gösterisi. |
-| **Geri sayım** | Bir tarihe kalan gün, saat ve dakika. |
-| **Not** | Ekranda duran kısa bir yazı. Üzerine dokunup yazın. |
+| **Günlük** | Saat ve tarih, Kadran saat, Hava durumu, Hava kalitesi (AQI), Takvim, Dünya saatleri, Geri sayım, Not, Odak sayacı |
+| **Sistem** | Sistem monitörü, Sensör listesi, Sensör grafiği, 2 Sensör, FPS |
+| **Medya** | Şimdi çalıyor, Ses (sürgü + sessiz), YouTube, Twitch Canlı, Twitch Sohbet, Fotoğraf ve video slaytı |
+| **Kontrol** | Uygulama başlatıcı, Stream Deck, Sanal klavye, Sanal touchpad |
+| **Web** | Web sitesi (iFrame / Web URL), SimHub |
+| **Eğlence** | Yazı tura, Kronograf, Kronometre |
 
+Öne çıkanlar:
+
+- **Uygulama başlatıcı / Stream Deck** (⚙ ile düzenlenir):
+  - **Yüklü programlar** kendi simgeleriyle, **Steam oyunları** kapak görselleriyle ve **web siteleri** eklenebilir.
+  - **Klavye kısayolları** eklenebilir (örn. Ctrl+Shift+M ile mikrofonu kapatma, OBS kısayolları).
+  - **Medya tuşları**, **hazır metinler** ("gg wp") ve **ekran değiştirme** düğmeleri eklenebilir.
+  - Var olan bir düğmeye dokunup adını, simgesini, rengini ve neyi açtığını değiştirebilirsiniz.
+- **Sensörler:** CPU, GPU (yük, sıcaklık, güç, fan, saat hızı, bellek), RAM, ağ, diskler, ses, FPS. [LibreHardwareMonitor](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor) açıksa onun bütün sensörleri de (fanlar, voltajlar, CPU sıcaklığı…) listeye eklenir.
+- **FPS:** MSI Afterburner / RivaTuner açıkken öndeki oyunun FPS değerini gösterir.
+- **Sanal klavye ve touchpad:** Edge'den ana ekrandaki uygulamaya yazı yazın ya da fareyi kullanın. Türkçe Q ve İngilizce düzen var.
+- **Edge Deck odak çalmaz:** Edge'e dokunduğunuzda oyun ya da kullandığınız program önde kalır. Sadece Edge Deck'in kendi yazı alanlarına dokunduğunuzda klavye ona geçer.
+
+![Sanal klavye ve touchpad](screenshots/keyboard.png)
+![Stream Deck ve sensörler](screenshots/deck.png)
 ![Yeni bileşenler](screenshots/widgets-new.png)
-
----
-
-## Oyun modu (fare Edge'e kaymasın)
-
-Oyun oynarken fare yanlışlıkla Edge ekranına kayıp oyunun dışına tıklanmasın diye:
-
-- **Otomatik (varsayılan):** Tam ekran bir oyun açıldığında fare oyunun ekranına kilitlenir; oyundan çıkınca serbest kalır.
-- **Dokunmatik çalışmaya devam eder:** Oyun sırasında Edge'e dokunup müzik değiştirebilirsiniz. Edge Deck penceresi oyunun önüne geçip onu küçültmez.
-- **Elle açıp kapatma:** Soldaki **oyun kolu** simgesine dokunun ("A" = otomatik, "ON" = her zaman açık).
-- **Ayarlar** sayfasından tamamen kapatılabilir.
 
 ---
 
@@ -112,7 +140,7 @@ Hepsi Edge'in gerçek çözünürlüğünde (2560×720). Görüntülerdeki veril
 
 ## Kullanım
 
-- Sayfalar arasında **sağa/sola kaydırarak** ya da soldaki simgelere dokunarak geçin.
+- Soldaki simgelerle sayfalar arasında geçin. Ana ekranda sağa/sola kaydırmak ana ekranlar arasında geçirir.
 - Sol alttaki **yeşil nokta**, panelin bilgisayara bağlı olduğunu gösterir.
 
 | Sayfa | Ne var |
