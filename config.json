@@ -1,0 +1,14 @@
+{
+  "port": 5280,
+  "libreHardwareMonitorUrl": "http://127.0.0.1:8085/data.json",
+  "launchers": [
+    { "id": "steam",    "name": "Steam",        "icon": "steam",    "color": "#66c0f4", "target": "steam://open/main" },
+    { "id": "discord",  "name": "Discord",      "icon": "discord",  "color": "#5865f2", "target": "discord://" },
+    { "id": "spotify",  "name": "Spotify",      "icon": "spotify",  "color": "#1ed760", "target": "spotify:" },
+    { "id": "browser",  "name": "Browser",      "icon": "globe",    "color": "#f5a524", "target": "https://www.google.com" },
+    { "id": "youtube",  "name": "YouTube",      "icon": "play",     "color": "#ff3b3b", "target": "https://www.youtube.com" },
+    { "id": "files",    "name": "Files",        "icon": "folder",   "color": "#ffd166", "target": "explorer.exe" },
+    { "id": "taskmgr",  "name": "Task Manager", "icon": "activity", "color": "#2ee6a6", "target": "taskmgr.exe" },
+    { "id": "settings", "name": "Settings",     "icon": "gear",     "color": "#a0a7b4", "target": "ms-settings:" }
+  ]
+}
